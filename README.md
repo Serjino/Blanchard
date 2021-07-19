@@ -1,2 +1,2 @@
-# Blanchard !(still in development)!
+# Blanchard !(still in the development)!
 Test landing page with all functionality
