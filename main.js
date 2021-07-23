@@ -4,271 +4,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     window.addEventListener('load', function () {
 
-        let selects = document.querySelectorAll('.nav-select__select');
-        let choices = document.getElementsByClassName('choices');
+        // These functions is placed here to optimize page loading. All information is descripted below
 
-        function choicesPluginInit(CSSClass) {
-            let elements = document.querySelectorAll(CSSClass);
-            elements.forEach(el =>
-                new Choices(el, {
-                    searchEnabled: false,
-                    itemSelectText: '',
-                    placeholder: true,
-                    renderSelectedChoices: 'always',
-                    shouldSort: false,
-                })
-            );
-        }
-
-        function eraseEqualValuesFromChoicesPlugin(choiceMainWrapper) {
-            let selectOptions = choiceMainWrapper.getElementsByClassName('choices__item--choice');
-            // console.log(choiceMainWrapper.querySelector('select'));
-            for (let selectOption of selectOptions) {
-                selectOption.classList.remove('is-highlighted', 'is-selected');
-                if (choiceMainWrapper.querySelector('select').textContent == selectOption.textContent) {
-                    selectOption.remove();
-                };
-            }
-        }
-
-        function fillTheCatalogWithArtWorkers(artWorkers) {
-            let accordionItems = document.getElementsByClassName('art-periods__item');
-
-            for (let accordionItem of accordionItems) {
-                let artWorkerPeriod = accordionItem.getElementsByClassName('art-periods__item-heading')[0].textContent;
-                let artWorkersForPeriod = artWorkers.filter(artWorker => artWorker.period == artWorkerPeriod);
-
-                for (let i = 0; i < artWorkersForPeriod.length; i++) {
-                    let artWorkersList = accordionItem.getElementsByClassName('artworkers-list')[0];
-
-                    let artWorkerLink = document.createElement('a');
-                    artWorkerLink.classList.add('artworkers-list__link');
-                    artWorkerLink.textContent = artWorkersForPeriod[i].name;
-                    artWorkerLink.href = '##';
-                    artWorkerLink.addEventListener('click', function () {
-                        let artWorkerLinks = document.getElementsByClassName('artworkers-list__link');
-                        for (let link of artWorkerLinks) {
-                            link.classList.remove('artworkers-list__link--active');
-                        }
-                        // this.closest('.artworkers-list__item').classList.add('artworkers-list__item--active');
-                        this.classList.add('artworkers-list__link--active');
-                    })
-
-                    let artWorkerListItem = document.createElement('li');
-                    artWorkerListItem.classList.add('artworkers-list__item');
-
-                    artWorkerListItem.append(artWorkerLink);
-                    artWorkersList.append(artWorkerListItem);
-                }
-            }
-        }
-
-        async function searchWikiPage(searchValue) {
-            var url = "https://ru.wikipedia.org/w/api.php";
-
-            var params = {
-                action: "opensearch",
-                search: searchValue,
-                limit: "1",
-                namespace: "0",
-                format: "json",
-            };
-
-            url = url + "?origin=*";
-            Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
-            let page;
-            await fetch(url)
-                .then(function (response) { return response.json(); })
-                .then(function (response) {
-                    // console.log(response[1][0]);
-                    page = response[1][0];
-                })
-                .catch(function (error) { console.log(error); });
-
-            return page;
-        };
-
-        async function getTextFromWikiPage(page) {
-            const url = "https://ru.wikipedia.org/w/api.php?" +
-                new URLSearchParams({
-                    origin: "*",
-                    action: "parse",
-                    page: page,
-                    format: "json",
-                    disablestylededuplication: true,
-                    disableeditsection: true,
-                    prop: 'text',
-                });
-
-            try {
-                const req = await fetch(url);
-                const json = await req.json();
-                const text = json.parse.text['*'];
-                // console.log(text);
-                return text;
-            } catch (e) {
-                console.error(e);
-            }
-
-        }
-
-        function getBirthDate(wikiText) {
-            let rowsWithData = wikiText.getElementsByTagName('tr');
-            for (let row of rowsWithData) {
-                if (row.textContent.includes('Дата') && row.textContent.includes('рождения')) {
-                    let birthDate = row.getElementsByTagName('td')[0].textContent;
-                    birthDate = birthDate.replace(/\(.+\)/, '').replace(/\[.+\]/, '').replace('ок.', ['около']);
-                    // birthDate = birthDate.replace(/\[.+\]/, '');
-                    if (!birthDate.includes('неизвестно')) {
-                        birthDate += ' г.'
-                        // console.log(birthDate);
-
-                    }
-                    return birthDate;
-                }
-            }
-        }
-
-        function getDeathDate(wikiText) {
-            let rowsWithData = wikiText.getElementsByTagName('tr');
-            for (let row of rowsWithData) {
-                if (row.textContent.includes('Дата') && row.textContent.includes('смерти')) {
-                    let deathDate = row.getElementsByTagName('td')[0].textContent;
-                    deathDate = deathDate.replace(/\(.+\)/, '').replace(/\[.+\]/, '').replace('ок.', ['около']);
-                    // deathDate = deathDate.replace(/\[.+\]/, '');
-                    if (!deathDate.includes('неизвестно')) {
-                        deathDate += ' г.'
-                        // console.log(deathDate);
-
-                    }
-                    return deathDate;
-                }
-            }
-        }
-
-        async function getMainImg(wikiText, classForImg) {
-            let images = wikiText.getElementsByTagName('img');
-            let mainIMG;
-            for (let image of images) {
-                if (image.width > 200) {
-                    mainIMG = image;
-                    break;
-                }
-                else {
-                    let noIMG = document.createElement('div');
-                    noIMG.classList.add('art-worker__no-img');
-                    noIMG.textContent = 'Нет изображения в хорошем качестве :(';
-                    mainIMG = noIMG;
-
-                }
-            }
-            mainIMG.classList.add(classForImg);
-            return mainIMG;
-        }
-
-        async function fillWithWikiContent(searchQuery, classForText, classForBirthDate, classForDeathDate, classForImage) {
-            let textEl = document.getElementsByClassName(classForText)[0];
-            textEl.innerHTML = await getTextFromWikiPage(await searchWikiPage(searchQuery));
-
-            let mainImageWrapper = document.getElementsByClassName(classForImage)[0];
-            mainImageWrapper.innerHTML = '';
-            mainImageWrapper.append(await getMainImg(textEl, 'art-worker__photo'));
-
-            let birthDateEl = document.getElementsByClassName(classForBirthDate)[0];
-            birthDateEl.textContent = await getBirthDate(textEl);
-            let deathDateEl = document.getElementsByClassName(classForDeathDate)[0];
-            deathDateEl.textContent = await getDeathDate(textEl);
-
-            let firstParagraph = textEl.getElementsByTagName('p')[0].textContent;
-            textEl.textContent = firstParagraph;
-
-        }
-
-        document.body.addEventListener('click', async function (e) {
-            if (e.target.classList.contains('artworkers-list__link')) {
-                let artWorkerEl = document.getElementsByClassName('art-worker')[0];
-                artWorkerEl.classList.add('loading');
-                let searchQuery = e.target.textContent;
-                await fillWithWikiContent(searchQuery, 'art-worker__description', 'art-worker__bearth-date', 'art-worker__death-date', 'art-worker__photo-wrapper');
-                let artWorkerName = document.getElementsByClassName('art-worker__heading')[0];
-                artWorkerName.textContent = e.target.textContent;
-                loadedTimeout = setTimeout(function () {
-                    artWorkerEl.classList.remove('loading');
-                }, 200)
-                artWorkerEl.classList.remove('loading');
-            }
-        });
-
-
-        choicesPluginInit('.nav-select__select');
-        choicesPluginInit('.filter__select');
-        let simpleBar = null;
-        for (let choice of choices) {
-            choice.addEventListener('click', function () {
-                eraseEqualValuesFromChoicesPlugin(choice);
-            });
-        }
-
-        // SimpleBar init
-
-        document.addEventListener('mousedown', function (e) {
-            console.log(e.target);
-            if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
-                console.log(simpleBar);
-                if (simpleBar != null) {
-                    simpleBar.unMount();
-                }
-                
-                simpleBar = null;
-                console.log(simpleBar);
-            };
-
-        })
-
-
-        document.addEventListener('click', function (e) {
-            console.log(e.target);
-           
-            if (e.target.classList.contains('choices__item') || e.target.classList.contains('choices__list--single')) {
-                console.log('m');
-                if (simpleBar == null || simpleBar == undefined) {
-                    simpleBar = new SimpleBar(e.target.closest('.choices').getElementsByClassName('choices__list')[2], {
-                        scrollbarMaxSize: '28',
-                    });
-                }
-    
-                // simpleBar.recalculate();
-            }
-            // else if (simpleBar != null) {
-            //     if (simpleBar != 'undefined') {
-            //         simpleBar.recalculate();
-            //     }
-            //     simpleBar.unMount();
-            // }
-
-        })
-
-
-
-        // for (let choice of choices) {
-        //     choice.addEventListener('mousedown', function () {
-
-        //         // this.getElementsByClassName('choices__list')[2].setAttribute('data-simplebar', "init");
-        //         new SimpleBar(this.getElementsByClassName('choices__list')[2], {
-        //             // forceVisible: 'y',
-        //             scrollbarMaxSize: '28',
-        //         });
-        //         console.log(this.getElementsByClassName('choices__list')[2]);
-
-        //     });
-        // }
-
-
-
-        // blurByMousedown('main-offer__link');
-        // blurByMousedown('choices');
-        // blurByMousedown('ui');
-        // blurByMousedown('link_purple');
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        fillTheCatalogWithArtWorkers(artWorkers);
 
         // Gallery Swiper setup 
         const gallerySwiper = new Swiper('.gallery__container', {
@@ -331,9 +70,268 @@ document.addEventListener('DOMContentLoaded', async function () {
                 el: '.swiper-scrollbar',
             },
         });
+        
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+        // Tippy.js setup
+        tippy('.tooltip_1', {
+            content: 'Пример современных тенденций - современная методология разработки',
+            theme: 'purple',
+            maxWidth: 264,
+        });
 
-        // 1. Accordion setup
+        tippy('.tooltip_2', {
+            content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
+            theme: 'purple',
+            maxWidth: 264,
+        });
+
+        tippy('.tooltip_3', {
+            content: 'В стремлении повысить качество ',
+            theme: 'purple',
+            maxWidth: 264,
+        });
+
+        // ==============================
+
+        // Choices.js (custom select) additional features
+
+        let choices = document.getElementsByClassName('choices');
+
+        function choicesPluginInit(CSSClass) {
+            let elements = document.querySelectorAll(CSSClass);
+            elements.forEach(el =>
+                new Choices(el, {
+                    searchEnabled: false,
+                    itemSelectText: '',
+                    placeholder: true,
+                    renderSelectedChoices: 'always',
+                    shouldSort: false,
+                })
+            );
+        }
+
+        function eraseEqualValuesFromChoicesPlugin(choiceMainWrapper) {
+            let selectOptions = choiceMainWrapper.getElementsByClassName('choices__item--choice');
+            for (let selectOption of selectOptions) {
+                selectOption.classList.remove('is-highlighted', 'is-selected');
+                if (choiceMainWrapper.querySelector('select').textContent == selectOption.textContent) {
+                    selectOption.remove();
+                };
+            }
+        }
+
+        // ==============================
+
+        // Choices.js (custom select) setup
+
+        choicesPluginInit('.nav-select__select');
+        choicesPluginInit('.filter__select');
+        let simpleBar = null;
+        for (let choice of choices) {
+            choice.addEventListener('click', function () {
+                eraseEqualValuesFromChoicesPlugin(choice);
+            });
+        }
+
+        // ==============================
+
+        // SimpleBar setup
+
+        document.addEventListener('mousedown', function (e) {
+            if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
+                if (simpleBar != null) {
+                    simpleBar.unMount();
+                }
+                simpleBar = null;
+            };
+        });
+
+        document.addEventListener('click', function (e) {
+
+            if (e.target.classList.contains('choices__item') || e.target.classList.contains('choices__list--single')) {
+                if (simpleBar == null || simpleBar == undefined) {
+                    simpleBar = new SimpleBar(e.target.closest('.choices').getElementsByClassName('choices__list')[2], {
+                        scrollbarMaxSize: '28',
+                    });
+                }
+            }
+        });
+
+        // ==============================
+
+        // Create unordered list in the Catalog section and fill it with art workers, using object artWorkers from 'object.js'
+
+        function fillTheCatalogWithArtWorkers(artWorkers) {
+            let accordionItems = document.getElementsByClassName('art-periods__item');
+
+            for (let accordionItem of accordionItems) {
+                let artWorkerPeriod = accordionItem.getElementsByClassName('art-periods__item-heading')[0].textContent;
+                let artWorkersForPeriod = artWorkers.filter(artWorker => artWorker.period == artWorkerPeriod);
+
+                for (let i = 0; i < artWorkersForPeriod.length; i++) {
+                    let artWorkersList = accordionItem.getElementsByClassName('artworkers-list')[0];
+
+                    let artWorkerLink = document.createElement('a');
+                    artWorkerLink.classList.add('artworkers-list__link');
+                    artWorkerLink.textContent = artWorkersForPeriod[i].name;
+                    artWorkerLink.href = '##';
+                    artWorkerLink.addEventListener('click', function () {
+                        let artWorkerLinks = document.getElementsByClassName('artworkers-list__link');
+                        for (let link of artWorkerLinks) {
+                            link.classList.remove('artworkers-list__link--active');
+                        }
+                        this.classList.add('artworkers-list__link--active');
+                    })
+
+                    let artWorkerListItem = document.createElement('li');
+                    artWorkerListItem.classList.add('artworkers-list__item');
+
+                    artWorkerListItem.append(artWorkerLink);
+                    artWorkersList.append(artWorkerListItem);
+                }
+            }
+        }
+
+        // WikiAPI features, that get data with picture, birth/death date and main description (1st paragraph) from Wiki
+
+        async function searchWikiPage(searchValue) {
+            var url = "https://ru.wikipedia.org/w/api.php";
+
+            var params = {
+                action: "opensearch",
+                search: searchValue,
+                limit: "1",
+                namespace: "0",
+                format: "json",
+            };
+
+            url = url + "?origin=*";
+            Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+            let page;
+            await fetch(url)
+                .then(function (response) { return response.json(); })
+                .then(function (response) {
+                    page = response[1][0];
+                })
+
+            return page;
+        };
+
+        async function getTextFromWikiPage(page) {
+            const url = "https://ru.wikipedia.org/w/api.php?" +
+                new URLSearchParams({
+                    origin: "*",
+                    action: "parse",
+                    page: page,
+                    format: "json",
+                    disablestylededuplication: true,
+                    disableeditsection: true,
+                    prop: 'text',
+                });
+
+            try {
+                const req = await fetch(url);
+                const json = await req.json();
+                const text = json.parse.text['*'];
+                return text;
+            } catch (e) {
+                console.error(e);
+            }
+
+        }
+
+        function getBirthDate(wikiText) {
+            let rowsWithData = wikiText.getElementsByTagName('tr');
+            for (let row of rowsWithData) {
+                if (row.textContent.includes('Дата') && row.textContent.includes('рождения')) {
+                    let birthDate = row.getElementsByTagName('td')[0].textContent;
+                    birthDate = birthDate.replace(/\(.+\)/, '').replace(/\[.+\]/, '').replace('ок.', ['около']);
+                    if (!birthDate.includes('неизвестно')) {
+                        birthDate += ' г.'
+                    }
+                    return birthDate;
+                }
+            }
+        }
+
+        function getDeathDate(wikiText) {
+            let rowsWithData = wikiText.getElementsByTagName('tr');
+            for (let row of rowsWithData) {
+                if (row.textContent.includes('Дата') && row.textContent.includes('смерти')) {
+                    let deathDate = row.getElementsByTagName('td')[0].textContent;
+                    deathDate = deathDate.replace(/\(.+\)/, '').replace(/\[.+\]/, '').replace('ок.', ['около']);
+                    if (!deathDate.includes('неизвестно')) {
+                        deathDate += ' г.'
+                    }
+                    return deathDate;
+                }
+            }
+        }
+
+        async function getMainImg(wikiText, classForImg) {
+            let images = wikiText.getElementsByTagName('img');
+            let mainIMG;
+            for (let image of images) {
+                if (image.width > 200) {
+                    mainIMG = image;
+                    break;
+                }
+                else {
+                    let noIMG = document.createElement('div');
+                    noIMG.classList.add('art-worker__no-img');
+                    noIMG.textContent = 'Нет изображения в хорошем качестве :(';
+                    mainIMG = noIMG;
+                }
+            }
+            mainIMG.classList.add(classForImg);
+            return mainIMG;
+        }
+
+        // ==============================
+
+        // Gathering data from wiki into bundle, which is ready to use
+
+        async function fillWithWikiContent(searchQuery, classForText, classForBirthDate, classForDeathDate, classForImage) {
+            let textEl = document.getElementsByClassName(classForText)[0];
+            textEl.innerHTML = await getTextFromWikiPage(await searchWikiPage(searchQuery));
+
+            let mainImageWrapper = document.getElementsByClassName(classForImage)[0];
+            mainImageWrapper.innerHTML = '';
+            mainImageWrapper.append(await getMainImg(textEl, 'art-worker__photo'));
+
+            let birthDateEl = document.getElementsByClassName(classForBirthDate)[0];
+            birthDateEl.textContent = await getBirthDate(textEl);
+            let deathDateEl = document.getElementsByClassName(classForDeathDate)[0];
+            deathDateEl.textContent = await getDeathDate(textEl);
+
+            let firstParagraph = textEl.getElementsByTagName('p')[0].textContent;
+            textEl.textContent = firstParagraph;
+
+        }
+
+        // ============================================
+
+        // Render bundled Wiki Info about art worker by click
+
+        document.body.addEventListener('click', async function renderArtWorkerWikiOnfo(e) {
+            if (e.target.classList.contains('artworkers-list__link')) {
+                let artWorkerEl = document.getElementsByClassName('art-worker')[0];
+                artWorkerEl.classList.add('loading');
+                let searchQuery = e.target.textContent;
+                await fillWithWikiContent(searchQuery, 'art-worker__description', 'art-worker__bearth-date', 'art-worker__death-date', 'art-worker__photo-wrapper');
+                let artWorkerName = document.getElementsByClassName('art-worker__heading')[0];
+                artWorkerName.textContent = e.target.textContent;
+                loadedTimeout = setTimeout(function () {
+                    artWorkerEl.classList.remove('loading');
+                }, 200)
+                artWorkerEl.classList.remove('loading');
+            }
+        });
+
+        // ============================================
+
+        // 1. Catalog section accordion setup
 
         $("#accordion").accordion({
             active: 0,
@@ -341,6 +339,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             heightStyle: "content",
             animate: 500,
         });
+
+        // ============================================
 
         // 1.1. Accordion style customization
 
@@ -353,13 +353,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 
         // 1.2. UI effects
-        // console.log(accItemHeadings);
         for (let i = 0; i < accItemHeadings.length; i++) {
-            console.log(accItemHeadings[i]);
 
             accItemHeadings[i].addEventListener('mouseover', function () {
-                // let nextEl = i+1;
-                // let prevEl = i-1;
                 if (!this.classList.contains('ui-state-active')) {
                     this.style.borderColor = 'var(--btn-purple)';
                     if (i == accItemHeadings.length - 2) {
@@ -369,117 +365,68 @@ document.addEventListener('DOMContentLoaded', async function () {
                         accItemHeadings[i + 1].style.borderColor = 'var(--btn-purple)';
                     }
                 }
-                // else if (accItemHeadings[i-1].classList.contains('ui-state-active')) {
-                //     accItemHeadings[i+1].style.borderColor = 'var(--btn-purple)'; 
-                // }
             });
             accItemHeadings[i].addEventListener('mouseout', function () {
                 if (!this.classList.contains('ui-state-active')) {
-                    // this.classList.remove('art-periods__item-heading--hover');
                     this.style.borderColor = '#CACACA';
                     accItemHeadings[i + 1].style.borderColor = '#CACACA';
                 }
             });
             accItemHeadings[i].addEventListener('mousedown', function (e) {
                 e.preventDefault();
-                // this.classList.add('art-periods__item-heading--hover');
-                // accItemHeadings[i+1].classList.remove('art-periods__item-heading--hover');
                 this.classList.remove('ui-state-focus');
                 if (!this.classList.contains('ui-state-active')) {
                     for (let i = 0; i < accItemHeadings.length; i++) {
                         accItemHeadings[i].style.borderColor = '#CACACA';
                     }
                     this.style.borderColor = 'var(--btn-purple)';
-                    // accItemHeadings[i+1].style.borderColor = 'var(--btn-purple)';
-
                 }
-                // else {
-                //     accItemHeadings[i+1].style.borderColor = 'var(--btn-purple)';
-                // }
-
             });
         }
 
-        // blurByMousedown('art-periods__item-heading');
+         // ============================================
 
-        //====== 
-
-        // All events functionality
+        // Show/hide elements with class 'event'. Dropdown
         let allEventsBtn = document.getElementById('allEventsBtn');
-        let eventsWrapper = document.getElementsByClassName('events')[0];
-        let eventsWrapperHeight = eventsWrapper.offsetHeight;
         let events = document.getElementsByClassName('event');
-        console.log(events.length);
-        let eventToScroll
-        if (events.length > 3) {
-            eventToScroll = events[3];
-        }
-        eventsWrapper.classList.add('events--all-hidden');
-        allEventsBtn.addEventListener('click', function () {
-            if (eventsWrapper.classList.contains('events--all-hidden')) {
-                eventsWrapper.classList.remove('events--all-hidden');
-                eventToScroll.scrollIntoView({
-                    behavior: 'smooth',
-                    block: "start",
-                    // inline: "start",
-                })
-                eventsWrapper.style.height = `${eventsWrapperHeight}px`;
 
+        allEventsBtn.addEventListener('click', function () {
+            for (let event of events) {
+                event.classList.toggle('event--shown');
+            };
+            if (events[0].classList.contains('event--shown')) {
+                events[3].classList.add('scrolled-to');
+                events[3].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
             }
             else {
-                eventsWrapper.scrollIntoView({
+                events[0].classList.add('scrolled-to');
+                events[0].scrollIntoView({
                     behavior: 'smooth',
-                    block: "start",
-                    // inline: "start",
+                    block: 'start',
                 });
-                eventsWrapper.style.height = `auto`;
-                eventsWrapper.classList.add('events--all-hidden');
-
             }
+        });
 
-            console.log(eventsWrapper.offsetHeight);
-        })
+        // ============================================
 
-        // Map setup
-
-
-
+        // Yandex Map setup
         ymaps.ready(init);
         function init() {
-
             var myMap = new ymaps.Map("map", {
                 center: [55.758468, 37.601088],
                 zoom: 15,
                 controls: [],
             });
-
-            //   {
-            //     'zoomControl': {
-            //         float: 'none',
-            //         position: {
-            //             right: 20,
-            //             top: 100,
-            //         }
-            //     }
-            // }
-
             var myPlacemark = new ymaps.Placemark([55.758468, 37.601088], {}, {
                 iconLayout: 'default#image',
                 iconImageHref: './img/sections/contacts/map-icon.svg',
                 iconImageSize: [30, 42],
                 iconImageOffset: [-3, -42]
             });
-
             myMap.geoObjects.add(myPlacemark);
-
-            //   myMap.controls.add('geolocationControl', {
-            //     float: 'none',
-            //     position: {
-            //         right: 20,
-            //         top: 100,
-            //     }
-            // });
-
             var geolocationControl = new ymaps.control.GeolocationControl({
                 options: {
                     noPlacemark: true,
@@ -489,7 +436,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                 }
             });
-
             var zoomControl = new ymaps.control.ZoomControl({
                 options: {
                     size: "small",
@@ -499,22 +445,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     }
                 }
             });
-
             myMap.controls.add(zoomControl);
-
             myMap.controls.add(geolocationControl);
-
-
-        }
-
-
-        // Tooltip event 
-        let tooltips = document.getElementsByClassName('tooltip');
-
-        for (let tooltip of tooltips) {
-            tooltip.addEventListener('click', function () {
-                this.classList.toggle('tooltip--active');
-            })
         }
 
         // Choose language UI
@@ -533,9 +465,9 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             });
         }
+        // ============================================
 
-        // Order feedback call
-
+        // Order feedback call from tools. Validity, Masks, etc.
         let inputTel = document.getElementsByClassName('order-call-form__input_tel')[0]
 
         $(inputTel).mask(`+7 (999) 999-99-99`, {
@@ -566,7 +498,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 let unvalidNotice = inputWrapper.getElementsByClassName('unvalid-notice')[0];
                 inputEl.classList.remove('order-call-form__input--unvalid');
                 unvalidNotice.remove();
-                console.log(inputWrapper);
                 return true;
             }
         }
@@ -580,12 +511,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
 
         orderCallForm.addEventListener('submit', function (e) {
-            console.log(this);
 
             checkValidity(nameValidRegex, nameInput, nameUnvalidNoticeText);
             checkValidity(telValidRegex, telInput, telUnvalidNoticeText);
 
-            console.log(this.getElementsByClassName('unvalid-notice'))
 
             if (this.getElementsByClassName('unvalid-notice').length == 0) {
                 this.submit();
@@ -593,48 +522,35 @@ document.addEventListener('DOMContentLoaded', async function () {
             else {
                 e.preventDefault();
             }
-
         })
 
-        
-    document.addEventListener('mousedown', function (e) {
-        if (!e.target.closest('form')) {
-            e.target.blur();
-        }
-       
-    })
+        document.addEventListener('mousedown', function (e) {
+            if (!e.target.closest('form')) {
+                e.target.blur();
+            }
+        })
 
-            
-    document.addEventListener('mouseup', function (e) {
-        if (!e.target.closest('form')) {
-            e.target.blur();
-        }
-       
-    })
+        document.addEventListener('mouseup', function (e) {
+            if (!e.target.closest('form')) {
+                e.target.blur();
+            }
+        })
 
-    // Contacts Form Btn Focus Event
-    let submitBtn = document.getElementsByClassName('order-call-form__btn')[0];
+        // Adding class by focus to the submit btn in the contacts form
+        let submitBtn = document.getElementsByClassName('order-call-form__btn')[0];
 
-    submitBtn.addEventListener('focusin', function () {
-        submitBtn.closest('div').classList.add('submit-btn-wrapper--focused');
-    })
+        submitBtn.addEventListener('focusin', function () {
+            submitBtn.closest('div').classList.add('submit-btn-wrapper--focused');
+        })
 
-    submitBtn.addEventListener('blur', function () {
-        submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
-    })
+        submitBtn.addEventListener('blur', function () {
+            submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
+        })
 
-    submitBtn.addEventListener('click', function () {
-        this.blur();
-        submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
-    })
-
-    // submitBtn.addEventListener('mousedown', function (e) {
-    //     e.preventDefault;
-    //     submitBtn.blur();
-    //     submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
-    // })
-
-        fillTheCatalogWithArtWorkers(artWorkers);
+        submitBtn.addEventListener('click', function () {
+            this.blur();
+            submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
+        })
 
         document.body.style.opacity = '1';
 

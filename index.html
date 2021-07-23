@@ -14,21 +14,11 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/media.css">
 
-    <!-- <noscript>
-        <style>
-          /**
-          * Reinstate scrolling for non-JS clients
-          */
-          .choices__list {
-            overflow-y: scroll;
-          }
-        </style>
-      </noscript>  -->
-    <link
-  rel="stylesheet"
-  href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
-/>
-<script defer src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <script defer src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -38,8 +28,8 @@
     <script defer src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script defer src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script defer src="./choices.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
-    <script defer type="module" src="./main.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js"></script>
+    <script type="module" src="./main.js"></script>
 </head>
 
 <body>
@@ -51,7 +41,7 @@
                 <div class="header__inner-top">
                     <div class="logo">
                         <a class="link logo__link ui" href="#">
-                            <img class="logo__img" src="./img/logo_full.svg">
+                            <img class="logo__img" src="./img/logo_full.svg" alt="Логотип Blanchard">
                         </a>
                     </div>
                     <nav class="nav">
@@ -392,7 +382,7 @@
             <div class="catalog section-catalog-catalog">
                 <div class="art-worker catalog__art-worker">
                     <div class="art-worker__photo-wrapper">
-                        <img class="art-worker__photo" src="img/sections/catalog/art-workers/Domenico_Girlandailo.jpg">
+                        <img class="art-worker__photo" src="img/sections/catalog/art-workers/Domenico_Girlandailo.jpg" alt="Domenico Girlandailo photo">
                     </div>
                     <div class="art-worker__content">
                         <h3 class="art-worker__heading">
@@ -626,7 +616,8 @@
                                 Джон Винзор. Фотографии из серии «Метафора серебра»
                             </h3>
                             <p class="event__desription">
-                                Один из ведущих флорентийских художников Кватроченто, основатель художественной династии, которую продолжили его брат Давид и сын Ридольфо.
+                                Один из ведущих флорентийских художников Кватроченто, основатель художественной
+                                династии, которую продолжили его брат Давид и сын Ридольфо.
                             </p>
                             <button class="events__more-info-btn">
                                 Подробнее
@@ -653,7 +644,7 @@
                         </legend>
                         <ul class="radios form__radios">
                             <li class="radio radios__radio">
-                                <input id="radio_bestsellers" class="radio__input" type="radio" name="category"
+                                <input id="radio_bestsellers" class="radio__input" type="checkbox" name="category"
                                     value="Бестселлеры">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -662,7 +653,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_art" class="radio__input" type="radio" name="category"
+                                <input id="radio_art" class="radio__input" type="checkbox" name="category"
                                     value="Искусство">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -671,7 +662,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_architecture" class="radio__input" type="radio" name="category"
+                                <input id="radio_architecture" class="radio__input" type="checkbox" name="category"
                                     value="Архитектура">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -680,7 +671,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_design" class="radio__input" type="radio" name="category"
+                                <input id="radio_design" class="radio__input" type="checkbox" name="category"
                                     value="Дизайн" checked>
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -689,7 +680,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_fashion" class="radio__input" type="radio" name="category"
+                                <input id="radio_fashion" class="radio__input" type="checkbox" name="category"
                                     value="Мода">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -698,7 +689,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_children" class="radio__input" type="radio" name="category"
+                                <input id="radio_children" class="radio__input" type="checkbox" name="category"
                                     value="Детям">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -707,7 +698,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_literature" class="radio__input" type="radio" name="category"
+                                <input id="radio_literature" class="radio__input" type="checkbox" name="category"
                                     value="Художественная литература">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -716,7 +707,8 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_journalism" class="radio__input" type="radio" name="category" value="Публицистика">
+                                <input id="radio_journalism" class="radio__input" type="checkbox" name="category"
+                                    value="Публицистика">
                                 <span class="radio__custom-radio-btn">
                                 </span>
                                 <label for="radio_journalism" class="radio__label">
@@ -724,7 +716,8 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_guides" class="radio__input" type="radio" name="category" value="Путеводители">
+                                <input id="radio_guides" class="radio__input" type="checkbox" name="category"
+                                    value="Путеводители">
                                 <span class="radio__custom-radio-btn">
                                 </span>
                                 <label for="radio_guides" class="radio__label">
@@ -732,7 +725,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_phylosophy" class="radio__input" type="radio" name="category"
+                                <input id="radio_phylosophy" class="radio__input" type="checkbox" name="category"
                                     value="Философия">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -741,7 +734,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_educational" class="radio__input" type="radio" name="category"
+                                <input id="radio_educational" class="radio__input" type="checkbox" name="category"
                                     value="Учебная литература">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -750,7 +743,7 @@
                                 </label>
                             </li>
                             <li class="radio radios__radio">
-                                <input id="radio_yellow-press" class="radio__input" type="radio" name="category"
+                                <input id="radio_yellow-press" class="radio__input" type="checkbox" name="category"
                                     value="Журналы и газеты">
                                 <span class="radio__custom-radio-btn">
                                 </span>
@@ -984,12 +977,19 @@
                 Проекты
             </h2>
             <p class="section-description section-projects__section-description">
-                Предварительные выводы: постоянное информационно-пропагандистское обеспечение нашей деятельности однозначно фиксирует необходимость своевременного выполнения сверхзадачи. А ещё независимые государства смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус
-                бесполезности. Прежде всего, постоянное 
-                информационно&nbsp;пропагандистское <a class="tooltip tooltip_1" href="##">i</a> 
-                обеспечение нашей деятельности однозначно фиксирует необходимость экономической целесообразности принимаемых решений. И нет сомнений, что действия представителей оппозиции могут быть рассмотрены <a class="tooltip tooltip_2" href="##">i</a> исключительно в разрезе маркетинговых и
-                финансовых <a class="tooltip tooltip_3" href="##">i</a> 
-                предпосылок. Банальные, но неопровержимые выводы, а также представители современных социальных резервов призывают нас к новым свершениям, которые, в свою очередь, должны быть смешаны с не уникальными данными до степени совершенной неузнаваемости. Подробнее: <a class="section-projects__link link link_purple" href="#">blanchard-art.ru/projects/about.</a>
+                Предварительные выводы: постоянное информационно-пропагандистское обеспечение нашей деятельности
+                однозначно фиксирует необходимость своевременного выполнения сверхзадачи. А ещё независимые государства
+                смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус
+                бесполезности. Прежде всего, постоянное
+                информационно&nbsp;пропагандистское <a class="tooltip tooltip_1" href="#">i</a>
+                обеспечение нашей деятельности однозначно фиксирует необходимость экономической целесообразности
+                принимаемых решений. И нет сомнений, что действия представителей оппозиции могут быть рассмотрены <a
+                    class="tooltip tooltip_2" href="#">i</a> исключительно в разрезе маркетинговых и
+                финансовых <a class="tooltip tooltip_3" href="#">i</a>
+                предпосылок. Банальные, но неопровержимые выводы, а также представители современных социальных резервов
+                призывают нас к новым свершениям, которые, в свою очередь, должны быть смешаны с не уникальными данными
+                до степени совершенной неузнаваемости. Подробнее: <a class="section-projects__link link link_purple"
+                    href="#">blanchard-art.ru/projects/about.</a>
             </p>
             <div class="partners">
                 <h3 class="partners__heading">
@@ -1003,48 +1003,48 @@
 
                         <ul class="partners__list swiper-wrapper">
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_1" src="./img/sections/partners/1.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_1" src="./img/sections/partners/1.svg" alt="Логотип Freelands Foundation">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_2" src="./img/sections/partners/2.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_2" src="./img/sections/partners/2.svg" alt="Логотип ICA">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_3" src="./img/sections/partners/3.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_3" src="./img/sections/partners/3.svg" alt="Логотип Workhouse">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_4" src="./img/sections/partners/4.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_4" src="./img/sections/partners/4.svg" alt="Логотип 1849">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_5" src="./img/sections/partners/5.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_5" src="./img/sections/partners/5.svg" alt="Логотип Hiscox">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_6" src="./img/sections/partners/6.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_6" src="./img/sections/partners/6.svg" alt="Логотип Stassen">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_7" src="./img/sections/partners/7.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_7" src="./img/sections/partners/7.svg" alt="Логотип Watts">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_8" src="./img/sections/partners/8.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_8" src="./img/sections/partners/8.svg" alt="Логотип Camden">
                                 </a>
                             </li>
                             <li class="partners__item swiper-slide">
-                                <a href="##" class="partner">
-                                    <img class="partner__logo partner__logo_9" src="./img/sections/partners/9.svg">
+                                <a href="#" class="partner">
+                                    <img class="partner__logo partner__logo_9" src="./img/sections/partners/9.svg" alt="Логотип Esad">
                                 </a>
                             </li>
 
@@ -1062,94 +1062,107 @@
     </section>
 
     <section class="section section-contacts">
-        <div class="container">
+        <div class="container container-xxl">
             <h2 class="section-heading section-contacts__section__heading">
                 Контакты
             </h2>
-        </div>
         <div class="contacts section-contacts__contacts">
             <div class="contacts__left-wrapper">
                 <div class="contacts__left-inner">
-                <h3 class="contacts__heading">
-                    Шоурум №4
-                </h3>
-                <span class="contacts__adress">
-                    Леонтьевский переулок, дом 5/1
-                </span>
-                <form class="order-call-form contacts__order-call-form"  action="https://jsonplaceholder.typicode.com/posts" method="POST">
-                    <fieldset class="order-call-form__fieldset">
-                        <legend class="order-call-form__legend">
-                            Заказать обратный звонок
-                        </legend>
-                        <div class="order-call-form__input-wrapper">
-                            <input class="input order-call-form__input order-call-form__input_name" type="text" placeholder="Имя*" name="name">
-                        </div>
-                        <div class="order-call-form__input-wrapper">
-                            <input class="input order-call-form__input order-call-form__input_tel" type="tel" placeholder="Телефон*" name="tel">
-                        </div>
-                        
-                        <div class="order-call-form__submit-btn-wrapper submit-btn-wrapper--focused">
-                            <input class="btn order-call-form__btn" type="submit" value="Заказать">
-                        </div>
-                        
-                        
-                    </fieldset>
-                </form>
-                <div class="contact-us contacts__contact-us">
-                    <h3 class="contact-us__heading">
-                        Связаться в один клик
+                    <h3 class="contacts__heading">
+                        Шоурум №4
                     </h3>
-                    <ul class="messenger contacts__messenger">
-                        <li class="messenger__item">
-                            <a class="messenger__link messenger__link_whats-up" href="#">
+                    <span class="contacts__adress">
+                        Леонтьевский переулок, дом 5/1
+                    </span>
+                    <form class="order-call-form contacts__order-call-form"
+                        action="https://jsonplaceholder.typicode.com/posts" method="POST">
+                        <fieldset class="order-call-form__fieldset">
+                            <legend class="order-call-form__legend">
+                                Заказать обратный звонок
+                            </legend>
+                            <div class="order-call-form__input-wrapper">
+                                <input class="input order-call-form__input order-call-form__input_name" type="text"
+                                    placeholder="Имя*" name="name">
+                            </div>
+                            <div class="order-call-form__input-wrapper">
+                                <input class="input order-call-form__input order-call-form__input_tel" type="tel"
+                                    placeholder="Телефон*" name="tel">
+                            </div>
 
-                            </a>
-                        </li>
-                        <li class="messenger__item">
-                            <a class="messenger__link messenger__link_telegramm" href="#">
+                            <div class="order-call-form__submit-btn-wrapper">
+                                <input class="btn order-call-form__btn" type="submit" value="Заказать">
+                            </div>
 
-                            </a>
-                        </li>
-                    </ul>
+
+                        </fieldset>
+                    </form>
+                    <div class="contact-us contacts__contact-us">
+                        <h3 class="contact-us__heading">
+                            Связаться в один клик
+                        </h3>
+                        <ul class="messenger contacts__messenger">
+                            <li class="messenger__item">
+                                <a class="messenger__link messenger__link_whats-up" href="#">
+
+                                </a>
+                            </li>
+                            <li class="messenger__item">
+                                <a class="messenger__link messenger__link_telegramm" href="#">
+
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="contacts__right-wrapper">
+                <div class="contacts__map" id="map" style="width: 100%; height: 100%">
                 </div>
             </div>
         </div>
-        <div class="contacts__right-wrapper">
-            <div class="contacts__map" id="map" style="width: 100%; height: 100%">
-            </div>
-        </div>
-        </div>
+    </div>
     </section>
     <footer class="footer">
         <div class="container footer__container">
             <div class="logo">
                 <a class="link logo__link ui" href="#">
-                    <img class="logo__img" src="./img/logo_full.svg">
+                    <img class="logo__img" src="./img/logo_full.svg" alt="Логотип Blanchard">
                 </a>
             </div>
             <ul class="social-media footer__social-media">
                 <li class="social-media__item">
                     <a class="social-media__link social-media__link_vk" href="#">
                         <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.5 0C10.074 0 0 10.0736 0 22.5C0 34.9264 10.074 45 22.5 45C34.926 45 45 34.9264 45 22.5C45 10.0736 34.926 0 22.5 0ZM33.9132 24.9335C34.9619 25.9577 36.0714 26.9217 37.0128 28.0519C37.4299 28.5519 37.823 29.0688 38.1222 29.6503C38.5495 30.4794 38.1637 31.3886 37.4216 31.4379L32.812 31.4369C31.6215 31.5354 30.6741 31.0553 29.8754 30.2414C29.2378 29.5927 28.6462 28.8999 28.0321 28.2292C27.7812 27.9539 27.517 27.6947 27.2021 27.4907C26.5737 27.0819 26.0277 27.2072 25.6677 27.8636C25.3008 28.5316 25.217 29.2719 25.182 30.0153C25.1319 31.1022 24.8041 31.3863 23.7135 31.4374C21.3832 31.5465 19.1721 31.1929 17.117 30.0181C15.3041 28.9818 13.901 27.5193 12.6783 25.8634C10.2973 22.6353 8.47381 19.0924 6.8354 15.4478C6.46665 14.627 6.73642 14.1878 7.64194 14.1707C9.14639 14.1417 10.6508 14.1454 12.1553 14.1694C12.7676 14.179 13.1727 14.5294 13.4079 15.1071C14.2209 17.1074 15.2176 19.0105 16.4665 20.7755C16.7994 21.2455 17.1391 21.7142 17.623 22.0461C18.157 22.4125 18.5639 22.2915 18.8158 21.6953C18.9769 21.3164 19.0464 20.9113 19.0814 20.5053C19.2011 19.1145 19.2153 17.7242 19.0082 16.339C18.8793 15.4722 18.3918 14.9124 17.5277 14.7485C17.0876 14.6652 17.152 14.5022 17.3661 14.2508C17.7376 13.8163 18.0856 13.5474 18.7812 13.5474L23.9893 13.5465C24.8101 13.7076 24.9942 14.0759 25.1056 14.9027L25.1102 20.6903C25.1006 21.0103 25.2709 21.9586 25.8454 22.1681C26.3058 22.32 26.6096 21.9508 26.8849 21.6594C28.1339 20.334 29.0237 18.7697 29.8206 17.1506C30.1723 16.4366 30.4757 15.6978 30.7703 14.9575C30.9895 14.4101 31.3301 14.1408 31.9479 14.15L36.9631 14.156C37.1108 14.156 37.2609 14.1574 37.4073 14.1827C38.2525 14.3273 38.4841 14.6909 38.2226 15.5154C37.811 16.8109 37.0114 17.89 36.2297 18.9718C35.3919 20.1301 34.4983 21.2478 33.6687 22.4111C32.9064 23.4746 32.9667 24.01 33.9132 24.9335Z" fill="#CACACA"/>
-                            </svg>    
+                            <path
+                                d="M22.5 0C10.074 0 0 10.0736 0 22.5C0 34.9264 10.074 45 22.5 45C34.926 45 45 34.9264 45 22.5C45 10.0736 34.926 0 22.5 0ZM33.9132 24.9335C34.9619 25.9577 36.0714 26.9217 37.0128 28.0519C37.4299 28.5519 37.823 29.0688 38.1222 29.6503C38.5495 30.4794 38.1637 31.3886 37.4216 31.4379L32.812 31.4369C31.6215 31.5354 30.6741 31.0553 29.8754 30.2414C29.2378 29.5927 28.6462 28.8999 28.0321 28.2292C27.7812 27.9539 27.517 27.6947 27.2021 27.4907C26.5737 27.0819 26.0277 27.2072 25.6677 27.8636C25.3008 28.5316 25.217 29.2719 25.182 30.0153C25.1319 31.1022 24.8041 31.3863 23.7135 31.4374C21.3832 31.5465 19.1721 31.1929 17.117 30.0181C15.3041 28.9818 13.901 27.5193 12.6783 25.8634C10.2973 22.6353 8.47381 19.0924 6.8354 15.4478C6.46665 14.627 6.73642 14.1878 7.64194 14.1707C9.14639 14.1417 10.6508 14.1454 12.1553 14.1694C12.7676 14.179 13.1727 14.5294 13.4079 15.1071C14.2209 17.1074 15.2176 19.0105 16.4665 20.7755C16.7994 21.2455 17.1391 21.7142 17.623 22.0461C18.157 22.4125 18.5639 22.2915 18.8158 21.6953C18.9769 21.3164 19.0464 20.9113 19.0814 20.5053C19.2011 19.1145 19.2153 17.7242 19.0082 16.339C18.8793 15.4722 18.3918 14.9124 17.5277 14.7485C17.0876 14.6652 17.152 14.5022 17.3661 14.2508C17.7376 13.8163 18.0856 13.5474 18.7812 13.5474L23.9893 13.5465C24.8101 13.7076 24.9942 14.0759 25.1056 14.9027L25.1102 20.6903C25.1006 21.0103 25.2709 21.9586 25.8454 22.1681C26.3058 22.32 26.6096 21.9508 26.8849 21.6594C28.1339 20.334 29.0237 18.7697 29.8206 17.1506C30.1723 16.4366 30.4757 15.6978 30.7703 14.9575C30.9895 14.4101 31.3301 14.1408 31.9479 14.15L36.9631 14.156C37.1108 14.156 37.2609 14.1574 37.4073 14.1827C38.2525 14.3273 38.4841 14.6909 38.2226 15.5154C37.811 16.8109 37.0114 17.89 36.2297 18.9718C35.3919 20.1301 34.4983 21.2478 33.6687 22.4111C32.9064 23.4746 32.9667 24.01 33.9132 24.9335Z"
+                                fill="#CACACA" />
+                        </svg>
                     </a>
                 </li>
                 <li class="social-media__item">
                     <a class="social-media__link social-media__link_inst" href="#">
                         <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M18.1172 22.5C18.1172 24.8785 20.0453 26.8066 22.4238 26.8066C24.8024 26.8066 26.7305 24.8785 26.7305 22.5C26.7305 20.1215 24.8024 18.1934 22.4238 18.1934C20.0453 18.1934 18.1172 20.1215 18.1172 22.5Z" fill="#CACACA"/>
-                            <path d="M12.3521 14.8803C12.5591 14.3194 12.8894 13.8116 13.3185 13.3948C13.7353 12.9656 14.2428 12.6354 14.8041 12.4283C15.2593 12.2515 15.9432 12.0411 17.2029 11.9837C18.5655 11.9216 18.9741 11.9082 22.4238 11.9082C25.8738 11.9082 26.2824 11.9212 27.6447 11.9834C28.9044 12.0411 29.5886 12.2515 30.0435 12.4283C30.6048 12.6354 31.1126 12.9656 31.5291 13.3948C31.9582 13.8116 32.2885 14.319 32.4959 14.8803C32.6727 15.3356 32.8831 16.0198 32.9405 17.2795C33.0026 18.6418 33.016 19.0503 33.016 22.5004C33.016 25.9501 33.0026 26.3587 32.9405 27.7213C32.8831 28.981 32.6727 29.6649 32.4959 30.1201C32.2885 30.6814 31.9586 31.1889 31.5294 31.6057C31.1126 32.0348 30.6052 32.3651 30.0438 32.5721C29.5886 32.7493 28.9044 32.9597 27.6447 33.0171C26.2824 33.0792 25.8742 33.0922 22.4241 33.0922C18.9737 33.0922 18.5652 33.0792 17.2032 33.0171C15.9436 32.9597 15.2593 32.7493 14.8041 32.5721C13.6773 32.1375 12.7867 31.2469 12.3521 30.1201C12.1753 29.6649 11.9648 28.981 11.9071 27.7213C11.845 26.3587 11.8319 25.9501 11.8319 22.5004C11.8319 19.0503 11.845 18.6418 11.9071 17.2795C11.9645 16.0198 12.1749 15.3356 12.3521 14.8803ZM22.4238 29.1344C26.0881 29.1344 29.0585 26.1643 29.0585 22.5001C29.0585 18.8358 26.0881 15.8657 22.4238 15.8657C18.7599 15.8657 15.7894 18.8358 15.7894 22.5001C15.7894 26.1643 18.7599 29.1344 22.4238 29.1344ZM15.5271 17.1538C16.3834 17.1538 17.0776 16.4596 17.0776 15.6034C17.0776 14.7471 16.3834 14.0529 15.5271 14.0529C14.6709 14.0529 13.9767 14.7471 13.9767 15.6034C13.977 16.4596 14.6709 17.1538 15.5271 17.1538Z" fill="#CACACA"/>
-                            <path d="M22.6204 0C34.9364 0 44.9238 9.98747 44.9238 22.3034C44.9238 34.6194 34.9364 44.6069 22.6204 44.6069C10.3044 44.6069 0.316959 34.6194 0.316959 22.3034C0.316959 9.98747 10.3044 0 22.6204 0ZM9.89059 27.5836C9.95253 28.9469 10.1693 29.8777 10.4858 30.6924C11.1512 32.4127 12.5111 33.7727 14.2314 34.438C15.0458 34.7545 15.9769 34.971 17.3399 35.0332C18.7057 35.0955 19.1419 35.1105 22.6201 35.1105C26.0985 35.1105 26.5345 35.0955 27.9005 35.0332C29.2635 34.971 30.1946 34.7545 31.009 34.438C31.8639 34.1164 32.6378 33.6124 33.2776 32.9607C33.929 32.3212 34.433 31.547 34.7546 30.6924C35.0711 29.878 35.2879 28.9469 35.3498 27.5839C35.4128 26.2178 35.4274 25.7815 35.4274 22.3034C35.4274 18.8253 35.4128 18.389 35.3502 17.0233C35.2883 15.66 35.0718 14.7292 34.7553 13.9145C34.4337 13.0599 33.9293 12.2857 33.2776 11.6462C32.6382 10.9945 31.8639 10.4905 31.0094 10.1689C30.1946 9.85236 29.2638 9.63592 27.9005 9.57364C26.5348 9.51136 26.0985 9.49638 22.6204 9.49638C19.1423 9.49638 18.706 9.51136 17.3403 9.57398C15.9769 9.63592 15.0462 9.85236 14.2314 10.1685C13.3769 10.4901 12.6026 10.9945 11.9628 11.6462C11.3114 12.286 10.8071 13.0599 10.4858 13.9145C10.169 14.7292 9.95253 15.66 9.89025 17.0233C9.82798 18.389 9.81334 18.8253 9.81334 22.3034C9.81334 25.7815 9.82798 26.2178 9.89059 27.5836Z" fill="#CACACA"/>
-                            </svg>
-                            
+                            <path
+                                d="M18.1172 22.5C18.1172 24.8785 20.0453 26.8066 22.4238 26.8066C24.8024 26.8066 26.7305 24.8785 26.7305 22.5C26.7305 20.1215 24.8024 18.1934 22.4238 18.1934C20.0453 18.1934 18.1172 20.1215 18.1172 22.5Z"
+                                fill="#CACACA" />
+                            <path
+                                d="M12.3521 14.8803C12.5591 14.3194 12.8894 13.8116 13.3185 13.3948C13.7353 12.9656 14.2428 12.6354 14.8041 12.4283C15.2593 12.2515 15.9432 12.0411 17.2029 11.9837C18.5655 11.9216 18.9741 11.9082 22.4238 11.9082C25.8738 11.9082 26.2824 11.9212 27.6447 11.9834C28.9044 12.0411 29.5886 12.2515 30.0435 12.4283C30.6048 12.6354 31.1126 12.9656 31.5291 13.3948C31.9582 13.8116 32.2885 14.319 32.4959 14.8803C32.6727 15.3356 32.8831 16.0198 32.9405 17.2795C33.0026 18.6418 33.016 19.0503 33.016 22.5004C33.016 25.9501 33.0026 26.3587 32.9405 27.7213C32.8831 28.981 32.6727 29.6649 32.4959 30.1201C32.2885 30.6814 31.9586 31.1889 31.5294 31.6057C31.1126 32.0348 30.6052 32.3651 30.0438 32.5721C29.5886 32.7493 28.9044 32.9597 27.6447 33.0171C26.2824 33.0792 25.8742 33.0922 22.4241 33.0922C18.9737 33.0922 18.5652 33.0792 17.2032 33.0171C15.9436 32.9597 15.2593 32.7493 14.8041 32.5721C13.6773 32.1375 12.7867 31.2469 12.3521 30.1201C12.1753 29.6649 11.9648 28.981 11.9071 27.7213C11.845 26.3587 11.8319 25.9501 11.8319 22.5004C11.8319 19.0503 11.845 18.6418 11.9071 17.2795C11.9645 16.0198 12.1749 15.3356 12.3521 14.8803ZM22.4238 29.1344C26.0881 29.1344 29.0585 26.1643 29.0585 22.5001C29.0585 18.8358 26.0881 15.8657 22.4238 15.8657C18.7599 15.8657 15.7894 18.8358 15.7894 22.5001C15.7894 26.1643 18.7599 29.1344 22.4238 29.1344ZM15.5271 17.1538C16.3834 17.1538 17.0776 16.4596 17.0776 15.6034C17.0776 14.7471 16.3834 14.0529 15.5271 14.0529C14.6709 14.0529 13.9767 14.7471 13.9767 15.6034C13.977 16.4596 14.6709 17.1538 15.5271 17.1538Z"
+                                fill="#CACACA" />
+                            <path
+                                d="M22.6204 0C34.9364 0 44.9238 9.98747 44.9238 22.3034C44.9238 34.6194 34.9364 44.6069 22.6204 44.6069C10.3044 44.6069 0.316959 34.6194 0.316959 22.3034C0.316959 9.98747 10.3044 0 22.6204 0ZM9.89059 27.5836C9.95253 28.9469 10.1693 29.8777 10.4858 30.6924C11.1512 32.4127 12.5111 33.7727 14.2314 34.438C15.0458 34.7545 15.9769 34.971 17.3399 35.0332C18.7057 35.0955 19.1419 35.1105 22.6201 35.1105C26.0985 35.1105 26.5345 35.0955 27.9005 35.0332C29.2635 34.971 30.1946 34.7545 31.009 34.438C31.8639 34.1164 32.6378 33.6124 33.2776 32.9607C33.929 32.3212 34.433 31.547 34.7546 30.6924C35.0711 29.878 35.2879 28.9469 35.3498 27.5839C35.4128 26.2178 35.4274 25.7815 35.4274 22.3034C35.4274 18.8253 35.4128 18.389 35.3502 17.0233C35.2883 15.66 35.0718 14.7292 34.7553 13.9145C34.4337 13.0599 33.9293 12.2857 33.2776 11.6462C32.6382 10.9945 31.8639 10.4905 31.0094 10.1689C30.1946 9.85236 29.2638 9.63592 27.9005 9.57364C26.5348 9.51136 26.0985 9.49638 22.6204 9.49638C19.1423 9.49638 18.706 9.51136 17.3403 9.57398C15.9769 9.63592 15.0462 9.85236 14.2314 10.1685C13.3769 10.4901 12.6026 10.9945 11.9628 11.6462C11.3114 12.286 10.8071 13.0599 10.4858 13.9145C10.169 14.7292 9.95253 15.66 9.89025 17.0233C9.82798 18.389 9.81334 18.8253 9.81334 22.3034C9.81334 25.7815 9.82798 26.2178 9.89059 27.5836Z"
+                                fill="#CACACA" />
+                        </svg>
+
                     </a>
                 </li>
                 <li class="social-media__item">
                     <a class="social-media__link social-media__link_fb" href="#">
                         <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.5 0C10.125 0 0 10.1431 0 22.6355C0 33.9307 8.23499 43.3057 18.99 45V29.1867H13.275V22.6355H18.99V17.6431C18.99 11.9729 22.3425 8.85542 27.495 8.85542C29.9475 8.85542 32.5125 9.28464 32.5125 9.28464V14.8645H29.6775C26.8875 14.8645 26.01 16.6039 26.01 18.3886V22.6355H32.265L31.2525 29.1867H26.01V45C31.312 44.1593 36.1399 41.4432 39.6223 37.342C43.1047 33.2408 45.012 28.0248 44.9999 22.6355C44.9999 10.1431 34.875 0 22.5 0Z" fill="#CACACA"/>
-                            </svg>   
+                            <path
+                                d="M22.5 0C10.125 0 0 10.1431 0 22.6355C0 33.9307 8.23499 43.3057 18.99 45V29.1867H13.275V22.6355H18.99V17.6431C18.99 11.9729 22.3425 8.85542 27.495 8.85542C29.9475 8.85542 32.5125 9.28464 32.5125 9.28464V14.8645H29.6775C26.8875 14.8645 26.01 16.6039 26.01 18.3886V22.6355H32.265L31.2525 29.1867H26.01V45C31.312 44.1593 36.1399 41.4432 39.6223 37.342C43.1047 33.2408 45.012 28.0248 44.9999 22.6355C44.9999 10.1431 34.875 0 22.5 0Z"
+                                fill="#CACACA" />
+                        </svg>
                     </a>
                 </li>
             </ul>
