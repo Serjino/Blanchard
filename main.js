@@ -1,4 +1,5 @@
 import { artWorkers } from './js/objects.js';
+import { languages } from './js/languages.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
 
@@ -27,6 +28,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
+            a11y: {
+                prevSlideMessage: 'Предыдущий слайд',
+                nextSlideMessage: 'Следующий слайд',
+                containerMessage: 'Слайдер',
+                containerMessage: 'Это первый слайд',
+            },
         });
 
         // Publications Swiper setup 
@@ -47,6 +54,12 @@ document.addEventListener('DOMContentLoaded', async function () {
             },
             scrollbar: {
                 el: '.swiper-scrollbar',
+            },
+            a11y: {
+                prevSlideMessage: 'Предыдущий слайд',
+                nextSlideMessage: 'Следующий слайд',
+                containerMessage: 'Слайдер',
+                containerMessage: 'Это первый слайд',
             },
         });
 
@@ -69,8 +82,14 @@ document.addEventListener('DOMContentLoaded', async function () {
             scrollbar: {
                 el: '.swiper-scrollbar',
             },
+            a11y: {
+                prevSlideMessage: 'Предыдущий слайд',
+                nextSlideMessage: 'Следующий слайд',
+                containerMessage: 'Слайдер',
+                containerMessage: 'Это первый слайд',
+            },
         });
-        
+
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // Tippy.js setup
@@ -319,7 +338,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 let artWorkerEl = document.getElementsByClassName('art-worker')[0];
                 artWorkerEl.classList.add('loading');
                 let searchQuery = e.target.textContent;
-                await fillWithWikiContent(searchQuery, 'art-worker__description', 'art-worker__bearth-date', 'art-worker__death-date', 'art-worker__photo-wrapper');
+                await fillWithWikiContent(searchQuery, 'art-worker__description', 'art-worker__birth-date', 'art-worker__death-date', 'art-worker__photo-wrapper');
                 let artWorkerName = document.getElementsByClassName('art-worker__heading')[0];
                 artWorkerName.textContent = e.target.textContent;
                 loadedTimeout = setTimeout(function () {
@@ -384,7 +403,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
         }
 
-         // ============================================
+        // ============================================
 
         // Show/hide elements with class 'event'. Dropdown
         let allEventsBtn = document.getElementById('allEventsBtn');
@@ -550,10 +569,53 @@ document.addEventListener('DOMContentLoaded', async function () {
         submitBtn.addEventListener('click', function () {
             this.blur();
             submitBtn.closest('div').classList.remove('submit-btn-wrapper--focused');
-        })
+        });
 
-        document.body.style.opacity = '1';
+        let preloadScene = document.getElementsByClassName('preload')[0];
 
+        preloadScene.classList.add('preload--disabled');
+
+        // Smooth anchor behavior
+
+        const anchors = document.querySelectorAll('.scroll-to')
+
+        for (let anchor of anchors) {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault()
+
+                const blockID = anchor.getAttribute('href').replace('#', '')
+
+                document.querySelector(`.anchor_${blockID}`).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                })
+            })
+        }
+        
+        // =======================================
+
+        // Change language setup in the catalog section
+
+        let changeLanguageBtns = document.getElementsByClassName('choose-lang__btn');
+
+        for (let changeLanguageBtn of changeLanguageBtns) {
+            changeLanguageBtn.addEventListener('click', function () {
+                let languageFromBtn = changeLanguageBtn.classList[1].replace('choose-lang__btn_', '');
+                let catalogText = document.getElementsByClassName('section-catalog_section-description')[0];
+                let desiredLanguage = languages.filter( languagePack => languagePack.language === languageFromBtn );
+                let artWorkerName = document.getElementsByClassName('art-worker__heading')[0];
+                let artWorkerBirthDate = document.getElementsByClassName('art-worker__birth-date')[0];
+                let artWorkerDeathDate = document.getElementsByClassName('art-worker__death-date')[0];
+                let artWorkerDescription = document.getElementsByClassName('art-worker__description')[0];
+
+                catalogText.textContent = desiredLanguage[0].text;
+                artWorkerName.textContent =  desiredLanguage[0].authorName;
+                artWorkerBirthDate.textContent =  desiredLanguage[0].authorBirthDate;
+                artWorkerDeathDate.textContent =  desiredLanguage[0].authorDeathDate;
+                artWorkerDescription.textContent =  desiredLanguage[0].authorDescription;
+            });
+
+        }
     })
 
 
