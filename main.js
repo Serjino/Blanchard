@@ -616,6 +616,9 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
 
         }
+
+        document.body.style.overflow = 'visible';
+
     })
 
 
