@@ -1145,9 +1145,7 @@ ul {
 .artworkers-list-wrapper {
     border: none;
     border-top: 1px solid #CACACA !important;
-    padding-left: 0px !important;
-    padding-top: 28px !important;
-    padding-bottom: 23px !important;
+    padding: 0px !important;
 }
 
 .artworkers-list {
@@ -1155,11 +1153,13 @@ ul {
     flex-direction: column;
     flex-wrap: wrap;
     border: none;
-    max-height: 315px;
+    max-height: 340px;
     align-items: flex-start;
     font-size: 16px;
     line-height: 32px;
-    width: 96%;
+    width: 92%;
+    padding-top: 28px !important;
+    padding-bottom: 23px !important;
 }
 
 .artworkers-list-wrapper_not-bordered {
