@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 containerMessage: 'Слайдер',
                 containerMessage: 'Это первый слайд',
             },
+            keyboard: {
+                enabled: true,
+                onlyInViewport: false,
+            },
         });
 
         // Publications Swiper setup 
@@ -119,14 +123,19 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         function choicesPluginInit(CSSClass) {
             let elements = document.querySelectorAll(CSSClass);
-            elements.forEach(el =>
+            elements.forEach(el => {
                 new Choices(el, {
                     searchEnabled: false,
                     itemSelectText: '',
                     placeholder: true,
                     renderSelectedChoices: 'always',
                     shouldSort: false,
-                })
+                });
+                let focusedByTabEl = el.closest('.choices');
+                focusedByTabEl.ariaLabel = el.textContent.trim(' ');
+                // el.getElementsByClassName('choices__list--single')[0].ariaLabel = el.textContent.trim(' ');
+                // console.log(el.textContent);
+            }
             );
         }
 
@@ -139,6 +148,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 };
             }
         }
+
+
 
         // ==============================
 
@@ -153,18 +164,20 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
         }
 
-        // ==============================
+        
 
-        // SimpleBar setup
+            // ==============================
 
-        document.addEventListener('mousedown', function (e) {
-            if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
-                if (simpleBar != null) {
-                    simpleBar.unMount();
-                }
-                simpleBar = null;
-            };
-        });
+            // SimpleBar setup
+
+            document.addEventListener('mousedown', function (e) {
+                if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
+                    if (simpleBar != null) {
+                        simpleBar.unMount();
+                    }
+                    simpleBar = null;
+                };
+            });
 
         document.addEventListener('click', function (e) {
 
@@ -194,6 +207,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     let artWorkerLink = document.createElement('a');
                     artWorkerLink.classList.add('artworkers-list__link');
                     artWorkerLink.textContent = artWorkersForPeriod[i].name;
+                    artWorkerLink.ariaLabel = `${i} из ${artWorkersForPeriod.length}. Художник ${artWorkersForPeriod[i].name}`
                     artWorkerLink.href = '##';
                     artWorkerLink.addEventListener('click', function () {
                         let artWorkerLinks = document.getElementsByClassName('artworkers-list__link');
@@ -591,7 +605,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 })
             })
         }
-        
+
         // =======================================
 
         // Change language setup in the catalog section
@@ -602,17 +616,17 @@ document.addEventListener('DOMContentLoaded', async function () {
             changeLanguageBtn.addEventListener('click', function () {
                 let languageFromBtn = changeLanguageBtn.classList[1].replace('choose-lang__btn_', '');
                 let catalogText = document.getElementsByClassName('section-catalog_section-description')[0];
-                let desiredLanguage = languages.filter( languagePack => languagePack.language === languageFromBtn );
+                let desiredLanguage = languages.filter(languagePack => languagePack.language === languageFromBtn);
                 let artWorkerName = document.getElementsByClassName('art-worker__heading')[0];
                 let artWorkerBirthDate = document.getElementsByClassName('art-worker__birth-date')[0];
                 let artWorkerDeathDate = document.getElementsByClassName('art-worker__death-date')[0];
                 let artWorkerDescription = document.getElementsByClassName('art-worker__description')[0];
 
                 catalogText.textContent = desiredLanguage[0].text;
-                artWorkerName.textContent =  desiredLanguage[0].authorName;
-                artWorkerBirthDate.textContent =  desiredLanguage[0].authorBirthDate;
-                artWorkerDeathDate.textContent =  desiredLanguage[0].authorDeathDate;
-                artWorkerDescription.textContent =  desiredLanguage[0].authorDescription;
+                artWorkerName.textContent = desiredLanguage[0].authorName;
+                artWorkerBirthDate.textContent = desiredLanguage[0].authorBirthDate;
+                artWorkerDeathDate.textContent = desiredLanguage[0].authorDeathDate;
+                artWorkerDescription.textContent = desiredLanguage[0].authorDescription;
             });
 
         }
