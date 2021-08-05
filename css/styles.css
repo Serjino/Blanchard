@@ -108,12 +108,14 @@ ul {
 }
 
 .container {
-    max-width: 1600px;
+    max-width: 1700px;
     margin: 0 auto;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .container-xxl {
-    max-width: 1920px;
+    /* max-width: 1920px; */
     margin: 0 auto;
 }
 
@@ -1189,7 +1191,6 @@ ul {
     line-height: 31px;
     cursor: pointer;
     border-bottom: 1px solid transparent;
-    letter-spacing: 0.5px;
 }
 
 .artworkers-list__item:hover {
@@ -1416,9 +1417,9 @@ ul {
     content: "";
     position: absolute;
     top: -3px;
-    left: -5px;
-    bottom: -10px;
-    right: -5px;
+    left: -8px;
+    bottom: -7px;
+    right: -8px;
     background: var(--btn-purple);
     z-index: -1;
     opacity: 0;
@@ -2039,28 +2040,55 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     padding-bottom: 0px !important;
 }
 
-.contacts {
-    display: flex;
+.section-contacts__contacts {
+    position: relative;
+    /* border-top: 1px solid #CACACA; */
+    z-index: 10;
+    overflow: hidden;
 }
+
+.section-contacts__container {
+    display: flex;
+    max-width: 1920px;
+}
+
 
 .section-contacts__section__heading {
     margin-bottom: 16px;
-    margin-left: 150px;
 }
 
 .contacts__left-wrapper {
+    position: relative;
     display: flex;
+    min-width: 625px;
+    /* padding-left: 150px; */
+    /* padding: 0px 120px 0px 150px; */
     justify-content: center;
-    min-width: 672px;
-    min-height: 699px;
-    border: 1px solid #CACACA;
+    /* min-width: 520px; */
+    min-height: 697px;
+    border-right: 1px solid #CACACA;
+    box-sizing: border-box;
+    z-index: 2;
+    background: white;
+
+    /* border: 1px solid #CACACA; */
+}
+
+.contacts__left-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    border-top: 1px solid #CACACA;
 }
 
 .contacts__left-inner {
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
     padding-top: 123px;
+    margin-left: -20px;
 }
 
 .order-call-form {
@@ -2292,13 +2320,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .contacts__right-wrapper {
+    /* position: relative; */
     width: 100%;
     /* height: 100%; */
     /* border: 1px solid red; */
+    overflow: hidden;
     flex-grow: 0;
 }
 
 /* Map */
+
 
 [class*="-ground-pane"] {
     filter: grayscale(100%) !important;
