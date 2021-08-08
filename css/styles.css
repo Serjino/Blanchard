@@ -132,10 +132,45 @@ ul {
     min-height: 100px;
 }
 
+.burger-menu {
+    display: none;
+    margin-right: auto;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.burger-menu__stick {
+    fill: white;
+    height: 2.5px;
+}
+
+.burger-menu__stick_1 {
+    y: 1.5px;
+    width: 27px;
+}
+
+.burger-menu__stick_2 {
+    width: 21px;
+    y: 10.5px;
+}
+
+.burger-menu__stick_3 {
+    width: 18px;
+    y: 20px;
+}
+
 .logo {
     padding-top: 3px;
     margin-right: 172px;
     margin-left: -3px;
+}
+
+.logo__img_mobile {
+    display: none;
 }
 
 .logo__link {
@@ -527,6 +562,10 @@ ul {
     width: 40px;
     height: 40px;
     margin: auto;
+}
+
+.search_mobile {
+    display: none;
 }
 
 /* Main offer */
@@ -1186,6 +1225,7 @@ ul {
 }
 
 .artworkers-list__item {
+
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 31px;
@@ -1284,6 +1324,7 @@ ul {
 .events {
     display: flex;
     flex-wrap: wrap;
+
     /* height: 750px; */
     overflow: hidden;
     transition: height 0.5s ease-in-out;
@@ -1297,13 +1338,18 @@ ul {
 .event {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    flex: 1 1 500px;
+    /* max-width: 500px; */
     margin-bottom: 50px;
     min-height: 700px;
 }
 
 .event:not(:nth-of-type(3n)) {
     margin-right: 50px;
+}
+
+.event:last-of-type {
+    margin-right: 0px !important;
 }
 
 .event:not(:nth-of-type(-n+3)) {
@@ -1712,9 +1758,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     color: white;
 }
 
-.section-publications__slide {
+/* .section-publications__slide {
     width: 350px !important;
-}
+} */
 
 .publication__img-wrapper {
     width: 100%;
@@ -2049,7 +2095,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .section-contacts__container {
     display: flex;
-    max-width: 1920px;
+    /* max-width: 120px; */
 }
 
 
@@ -2060,10 +2106,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .contacts__left-wrapper {
     position: relative;
     display: flex;
-    min-width: 625px;
+    min-width: 520px;
     /* padding-left: 150px; */
     /* padding: 0px 120px 0px 150px; */
-    justify-content: center;
+    /* justify-content: center; */
     /* min-width: 520px; */
     min-height: 697px;
     border-right: 1px solid #CACACA;
@@ -2088,7 +2134,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     display: flex;
     flex-direction: column;
     padding-top: 123px;
-    margin-left: -20px;
+    /* margin-left: -20px; */
 }
 
 .order-call-form {

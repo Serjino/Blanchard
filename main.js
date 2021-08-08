@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 el: '.section-gallery__swiper__pagination',
                 type: 'fraction',
             },
-            slidesPerView: 6,
-            spaceBetween: 50,
-            slidesPerGroup: 6,
+            // slidesPerView: 6,
+            // spaceBetween: 50,
+            // slidesPerGroup: 6,
             navigation: {
                 nextEl: '.section-gallery__swiper-nav__btn-next',
                 prevEl: '.section-gallery__swiper-nav__btn-prev',
@@ -38,6 +38,24 @@ document.addEventListener('DOMContentLoaded', async function () {
                 enabled: true,
                 onlyInViewport: false,
             },
+            breakpoints: {
+                // when window width is >= 320px
+                // 320: {
+                //   slidesPerView: 2,
+                //   spaceBetween: 20
+                // },
+                // when window width is >= 480px
+                1000: {
+                    slidesPerView: 4,
+                    spaceBetween: 34,
+                    slidesPerGroup: 4,
+                },
+                1700: {
+                    slidesPerView: 6,
+                    spaceBetween: 50,
+                    slidesPerGroup: 6,
+                },
+              }
         });
 
         // Publications Swiper setup 
@@ -49,9 +67,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 el: '.section-publications__swiper__pagination',
                 type: 'fraction',
             },
-            slidesPerView: 3,
-            spaceBetween: 50,
-            slidesPerGroup: 3,
             navigation: {
                 nextEl: '.section-publications__swiper-nav__btn-next',
                 prevEl: '.section-publications__swiper-nav__btn-prev',
@@ -65,6 +80,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 containerMessage: 'Слайдер',
                 containerMessage: 'Это первый слайд',
             },
+            breakpoints: {
+                1000: {
+                    slidesPerView: 2,
+                    spaceBetween: 49,
+                    slidesPerGroup: 2,
+                },
+                1700: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                    slidesPerGroup: 3,
+                },
+            }
         });
 
         // Publications Swiper setup 
@@ -76,9 +103,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 el: '.section-publications__swiper__pagination',
                 type: 'fraction',
             },
-            slidesPerView: 3,
-            spaceBetween: 50,
-            slidesPerGroup: 3,
             navigation: {
                 nextEl: '.partners__btn-next',
                 prevEl: '.partners__btn-prev',
@@ -92,6 +116,19 @@ document.addEventListener('DOMContentLoaded', async function () {
                 containerMessage: 'Слайдер',
                 containerMessage: 'Это первый слайд',
             },
+            breakpoints: {
+                1020: {
+                    slidesPerView: 2,
+                    spaceBetween: 50,
+                    slidesPerGroup: 2,
+                },
+                1700: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                    slidesPerGroup: 3,
+                },
+
+              }
         });
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -422,11 +459,12 @@ document.addEventListener('DOMContentLoaded', async function () {
         // Show/hide elements with class 'event'. Dropdown
         let allEventsBtn = document.getElementById('allEventsBtn');
         let events = document.getElementsByClassName('event');
-
+        let k = 1;
         allEventsBtn.addEventListener('click', function () {
-            for (let event of events) {
-                event.classList.toggle('event--shown');
+            for (let i = 0; i < events.length; i++) {
+                events[i].classList.toggle('event--shown');
             };
+            
             if (events[0].classList.contains('event--shown')) {
                 events[3].classList.add('scrolled-to');
                 events[3].scrollIntoView({
@@ -434,6 +472,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     block: 'start',
                 });
             }
+
             else {
                 events[0].classList.add('scrolled-to');
                 events[0].scrollIntoView({
@@ -630,6 +669,15 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
 
         }
+
+        // Burger menu show/hide functionality 
+
+        document.getElementsByClassName('burger-menu')[0].addEventListener('click', function(){
+            let navigation = document.getElementsByClassName('nav')[0];
+            let headerBottom = document.getElementsByClassName('header__inner-bottom')[0]
+            navigation.classList.toggle('nav--opened');
+            headerBottom.classList.toggle('header__inner-bottom--opened')
+        });
 
         document.body.style.overflow = 'visible';
 

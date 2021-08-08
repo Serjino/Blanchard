@@ -53,9 +53,17 @@
         <div class="header__wrapper-top">
             <div class="container header__container">
                 <div class="header__inner-top">
-                    <div class="logo">
+                    <button class="burger-menu">
+                        <svg width="40" height="40" viewBox="0 0 30 23" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="burger-menu__stick burger-menu__stick_1"></rect>
+                            <rect class="burger-menu__stick burger-menu__stick_2"></rect>
+                            <rect class="burger-menu__stick burger-menu__stick_3"></rect>
+                          </svg>
+                    </button>
+                    <div class="logo header__logo">
                         <a class="link logo__link ui" href="#" tabindex="0">
-                            <img class="logo__img" src="./img/logo_full.svg" alt="Логотип Blanchard">
+                            <img class="logo__img logo__img_desktop" src="./img/logo_full.svg" alt="Логотип Blanchard">
+                            <img class="logo__img logo__img_mobile" src="./img/logo-mobile.svg" alt="Логотип Blanchard">
                         </a>
                     </div>
                     <nav class="nav">
@@ -98,6 +106,11 @@
                         </ul>
                     </nav>
                     <button class="btn header__btn btn_login ui">Войти</button>
+                    <form class="search search_mobile" action="https://jsonplaceholder.typicode.com/posts" method="GET">
+
+                        <input class="search__input search__input_mobile" type="text" placeholder=" Поиск по сайту">
+                        <button aria-label="Кнопка найти" class="btn search__btn btn_search btn_search-mobile"></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -234,7 +247,7 @@
         <div class="container">
             <div class="main-offer">
                 <h1 class="heading main-offer__heading">
-                    Прикоснитесь к прекрасному
+                    Прикоснитесь к&nbsp;прекрасному
                 </h1>
                 <p class="main-offer__text">
                     Мы вынуждены отталкиваться от того, что реализация намеченных плановых заданий создаёт предпосылки
@@ -742,7 +755,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="event">
+                <!-- <li class="event">
 
                     <div class="event__img event__img_1">
 
@@ -769,7 +782,7 @@
                             </button>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <button id="allEventsBtn" class="section-events__more-events-btn">
                 Все события
@@ -1137,7 +1150,7 @@
                 финансовых <a class="tooltip tooltip_3" href="#">i</a>
                 предпосылок. Банальные, но неопровержимые выводы, а также представители современных социальных резервов
                 призывают нас к новым свершениям, которые, в свою очередь, должны быть смешаны с не уникальными данными
-                до степени совершенной неузнаваемости. Подробнее: <a class="section-projects__link link link_purple"
+                до степени совершенной неузнаваемости. Подробнее:<a class="section-projects__link link link_purple"
                     href="#">blanchard-art.ru/projects/about.</a>
             </p>
             <div class="partners">
@@ -1283,7 +1296,7 @@
                         </div>
                     </div>
                     <div class="contacts__right-wrapper">
-                        <div class="contacts__map" id="map" style="position: absolute; top: 0px;  right: 0px; width:65%; height: 100%;">
+                        <div class="contacts__map" id="map" style="position: absolute; top: 0px;  right: 0px; width:70%; height: 100%;">
                         </div>
                     </div>
                 </div>
@@ -1336,7 +1349,9 @@
                 </li>
             </ul>
         </div>
+       
     </footer>
+    <script> </script>
 </body>
 
 </html>
