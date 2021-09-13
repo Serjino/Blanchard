@@ -58,57 +58,60 @@
                             <rect class="burger-menu__stick burger-menu__stick_1"></rect>
                             <rect class="burger-menu__stick burger-menu__stick_2"></rect>
                             <rect class="burger-menu__stick burger-menu__stick_3"></rect>
-                          </svg>
+                        </svg>
                     </button>
                     <div class="logo header__logo">
                         <a class="link logo__link ui" href="#" tabindex="0">
                             <img class="logo__img logo__img_desktop" src="./img/logo_full.svg" alt="Логотип Blanchard">
+                            <img class="logo__img logo__img_tablet" src="./img/logo-tablet.svg" alt="Логотип Blanchard">
                             <img class="logo__img logo__img_mobile" src="./img/logo-mobile.svg" alt="Логотип Blanchard">
                         </a>
                     </div>
                     <nav class="nav">
                         <ul class="nav__list">
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#about-us">
+                                <a class="nav__link nav__link ui scroll-to" href="#about-us">
                                     О нас
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#gallery">
+                                <a class="nav__link nav__link ui scroll-to" href="#gallery">
                                     Галерея
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#catalog">
+                                <a class="nav__link nav__link ui scroll-to" href="#catalog">
                                     Каталог
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#events">
+                                <a class="nav__link nav__link ui scroll-to" href="#events">
                                     События
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#publications">
+                                <a class="nav__link nav__link ui scroll-to" href="#publications">
                                     Издания
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#projects">
+                                <a class="nav__link nav__link ui scroll-to" href="#projects">
                                     Проекты
                                 </a>
                             </li>
                             <li class="nav__item">
-                                <a class="nav__link ui scroll-to" href="#contacts">
+                                <a class="nav__link nav__link ui scroll-to" href="#contacts">
                                     Контакты
                                 </a>
                             </li>
                         </ul>
                     </nav>
                     <button class="btn header__btn btn_login ui">Войти</button>
-                    <form class="search search_mobile" action="https://jsonplaceholder.typicode.com/posts" method="GET">
+                    <form class="search search_mobile" action="https://jsonplaceholder.typicode.com/posts"
+                        method="POST">
 
-                        <input class="search__input search__input_mobile" type="text" placeholder=" Поиск по сайту">
+                        <input class="search__input search__input_mobile" type="text" placeholder=" Поиск по сайту"
+                            name="SearchQuery">
                         <button aria-label="Кнопка найти" class="btn search__btn btn_search btn_search-mobile"></button>
                     </form>
                 </div>
@@ -255,6 +258,54 @@
                 </p>
                 <a class="link main-offer__link scroll-to" href="#order-subscription">Подписаться на рассылку</a>
             </div>
+            <nav class="nav nav_mobile">
+                <button class="burger-menu burger-menu_nav">
+                    <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2.63623" width="37.2838" height="3.72838" transform="rotate(45 2.63623 0)"
+                            fill="white" />
+                        <rect y="26.3636" width="37.2838" height="3.72838" transform="rotate(-45 0 26.3636)"
+                            fill="white" />
+                    </svg>
+                </button>
+                <ul class="nav__list nav__list_mobile">
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#about-us">
+                            О нас
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#gallery">
+                            Галерея
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#catalog">
+                            Каталог
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#events">
+                            События
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#publications">
+                            Издания
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#projects">
+                            Проекты
+                        </a>
+                    </li>
+                    <li class="nav__item nav__item_mobile">
+                        <a class="nav__link nav__link_mobile ui scroll-to" href="#contacts">
+                            Контакты
+                        </a>
+                    </li>
+                </ul>
+                <button class="btn nav__btn btn_login btn_login-mobile ui">Войти</button>
+            </nav>
         </div>
     </section>
 
@@ -307,10 +358,7 @@
                     </select>
                 </div>
                 <!-- </div> -->
-                <p class="section-gallery__free-download-notice">
-                    Вам предоставляется 10 бесплатных скачиваний. Для увеличения количества скачиваний <a
-                        class="section-gallery__auth-link" href="#">авторизуйтесь,</a> либо воспользуйтесь лицензией.
-                </p>
+
             </div>
             <div class="gallery-swiper section-gallery__gallery-swiper">
                 <div class="swiper-nav">
@@ -467,6 +515,10 @@
                     </ul>
                 </div>
             </div>
+            <p class="section-gallery__free-download-notice">
+                Вам предоставляется 10 бесплатных скачиваний. Для увеличения количества скачиваний <a
+                    class="section-gallery__auth-link" href="#">авторизуйтесь,</a> либо воспользуйтесь лицензией.
+            </p>
         </div>
     </section>
 
@@ -614,148 +666,155 @@
                     События
                 </h2>
             </a>
-            <ul class="events section-events__events" aria-label="Список ближайших событий">
-                <li class="event">
+            <div id="wrapperForSwiper">
+                <ul class="events section-events__events" aria-label="Список ближайших событий">
+                    <li class="event">
 
-                    <div class="event__img event__img_1">
+                        <div class="event__img event__img_1">
 
-                    </div>
-                    <div class="event__inner">
-                        <div class="event__date-and-place" role="mark" aria-label="Место и время проведения события">
-                            <span class="event__place">
-                                Музей им. Щусева
-                            </span>
-                            <span class="event__date">
-                                с 20 марта по 30 апреля
-                            </span>
                         </div>
-                        <div class="event__content">
-                            <h3 class="event__heading">
-                                Книжная гравюра в живом восприятии
-                            </h3>
-                            <p class="event__desription" aria-level="4">
-                                Один из ведущих флорентийских художников Кватроченто, основатель художественной
-                                династии, которую продолжили его брат Давид и сын Ридольфо.
-                            </p>
-                            <button class="events__more-info-btn">
-                                Подробнее
-                            </button>
+                        <div class="event__inner">
+                            <div class="event__date-and-place" role="mark"
+                                aria-label="Место и время проведения события">
+                                <span class="event__place">
+                                    Музей им. Щусева
+                                </span>
+                                <span class="event__date">
+                                    с 20 марта по 30 апреля
+                                </span>
+                            </div>
+                            <div class="event__content">
+                                <h3 class="event__heading">
+                                    Книжная гравюра в живом восприятии
+                                </h3>
+                                <p class="event__desription" aria-level="4">
+                                    Один из ведущих флорентийских художников Кватроченто, основатель художественной
+                                    династии, которую продолжили его брат Давид и сын Ридольфо.
+                                </p>
+                                <button class="events__more-info-btn">
+                                    Подробнее
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="event">
+                    </li>
+                    <li class="event">
 
-                    <div class="event__img event__img_2">
+                        <div class="event__img event__img_2">
 
-                    </div>
-                    <div class="event__inner">
-                        <div class="event__date-and-place" role="mark" aria-label="Место и время проведения события">
-                            <span class="event__place">
-                                ММОМА
-                            </span>
-                            <span class="event__date">
-                                24 марта 19:00
-                            </span>
                         </div>
-                        <div class="event__content">
-                            <h3 class="event__heading">
-                                «Открытая дискуссия». Дмитрий Петров и Сергей Ильин.
-                            </h3>
-                            <p class="event__desription">
-                                Высокий уровень вовлечения представителей целевой аудитории является четким
-                                доказательством простого факта.
-                            </p>
-                            <button class="events__more-info-btn">
-                                Подробнее
-                            </button>
+                        <div class="event__inner">
+                            <div class="event__date-and-place" role="mark"
+                                aria-label="Место и время проведения события">
+                                <span class="event__place">
+                                    ММОМА
+                                </span>
+                                <span class="event__date">
+                                    24 марта 19:00
+                                </span>
+                            </div>
+                            <div class="event__content">
+                                <h3 class="event__heading">
+                                    «Открытая дискуссия». Дмитрий Петров и Сергей Ильин.
+                                </h3>
+                                <p class="event__desription">
+                                    Высокий уровень вовлечения представителей целевой аудитории является четким
+                                    доказательством простого факта.
+                                </p>
+                                <button class="events__more-info-btn">
+                                    Подробнее
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="event">
+                    </li>
+                    <li class="event">
 
-                    <div class="event__img event__img_3">
+                        <div class="event__img event__img_3">
 
-                    </div>
-                    <div class="event__inner">
-                        <div class="event__date-and-place" role="mark" aria-label="Место и время проведения события">
-                            <span class="event__place">
-                                Еврейский музей
-                            </span>
-                            <span class="event__date">
-                                с 31 марта по 21 апреля
-                            </span>
                         </div>
-                        <div class="event__content">
-                            <h3 class="event__heading">
-                                Выставка «Формация 2020»
-                            </h3>
-                            <p class="event__desription">
-                                Идейные соображения высшего порядка, а также современная методология разработки играет
-                                важную роль в формировании глубокомысленных рассуждений.
-                            </p>
-                            <button class="events__more-info-btn">
-                                Подробнее
-                            </button>
+                        <div class="event__inner">
+                            <div class="event__date-and-place" role="mark"
+                                aria-label="Место и время проведения события">
+                                <span class="event__place">
+                                    Еврейский музей
+                                </span>
+                                <span class="event__date">
+                                    с 31 марта по 21 апреля
+                                </span>
+                            </div>
+                            <div class="event__content">
+                                <h3 class="event__heading">
+                                    Выставка «Формация 2020»
+                                </h3>
+                                <p class="event__desription">
+                                    Идейные соображения высшего порядка, а также современная методология разработки
+                                    играет
+                                    важную роль в формировании глубокомысленных рассуждений.
+                                </p>
+                                <button class="events__more-info-btn">
+                                    Подробнее
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="event">
+                    </li>
+                    <li class="event">
 
-                    <div class="event__img event__img_4">
+                        <div class="event__img event__img_4">
 
-                    </div>
-                    <div class="event__inner">
-                        <div class="event__date-and-place" role="mark" aria-label="Место и время проведения события">
-                            <span class="event__place">
-                                Третьяковка на Крымском валу
-
-                            </span>
-                            <span class="event__date">
-                                с 30 марта по 30 апреля
-                            </span>
                         </div>
-                        <div class="event__content">
-                            <h3 class="event__heading">
-                                XXIV Международная биеннале молодого искусства
-                            </h3>
-                            <p class="event__desription">
-                                Внезапно, реплицированные с зарубежных источников, современные исследования.
-                            </p>
-                            <button class="events__more-info-btn">
-                                Подробнее
-                            </button>
-                        </div>
-                    </div>
-                </li>
-                <li class="event">
+                        <div class="event__inner">
+                            <div class="event__date-and-place" role="mark"
+                                aria-label="Место и время проведения события">
+                                <span class="event__place">
+                                    Третьяковка на Крымском валу
 
-                    <div class="event__img event__img_5">
+                                </span>
+                                <span class="event__date">
+                                    с 30 марта по 30 апреля
+                                </span>
+                            </div>
+                            <div class="event__content">
+                                <h3 class="event__heading">
+                                    XXIV Международная биеннале молодого искусства
+                                </h3>
+                                <p class="event__desription">
+                                    Внезапно, реплицированные с зарубежных источников, современные исследования.
+                                </p>
+                                <button class="events__more-info-btn">
+                                    Подробнее
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="event">
 
-                    </div>
-                    <div class="event__inner">
-                        <div class="event__date-and-place" role="mark" aria-label="Место и время проведения события">
-                            <span class="event__place">
-                                ММАМ
-                            </span>
-                            <span class="event__date">
-                                с 8 апреля по 20 мая
-                            </span>
+                        <div class="event__img event__img_5">
+
                         </div>
-                        <div class="event__content">
-                            <h3 class="event__heading">
-                                Джон Винзор. Фотографии из серии «Метафора серебра»
-                            </h3>
-                            <p class="event__desription">
-                                Один из ведущих флорентийских художников Кватроченто, основатель художественной
-                                династии, которую продолжили его брат Давид и сын Ридольфо.
-                            </p>
-                            <button class="events__more-info-btn">
-                                Подробнее
-                            </button>
+                        <div class="event__inner">
+                            <div class="event__date-and-place" role="mark"
+                                aria-label="Место и время проведения события">
+                                <span class="event__place">
+                                    ММАМ
+                                </span>
+                                <span class="event__date">
+                                    с 8 апреля по 20 мая
+                                </span>
+                            </div>
+                            <div class="event__content">
+                                <h3 class="event__heading">
+                                    Джон Винзор. Фотографии из серии «Метафора серебра»
+                                </h3>
+                                <p class="event__desription">
+                                    Один из ведущих флорентийских художников Кватроченто, основатель художественной
+                                    династии, которую продолжили его брат Давид и сын Ридольфо.
+                                </p>
+                                <button class="events__more-info-btn">
+                                    Подробнее
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <!-- <li class="event">
+                    </li>
+                    <!-- <li class="event">
 
                     <div class="event__img event__img_1">
 
@@ -783,7 +842,12 @@
                         </div>
                     </div>
                 </li> -->
-            </ul>
+                </ul>
+            </div>
+            <div class="swiper-pagination">
+                <!-- <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div> -->
+            </div>
             <button id="allEventsBtn" class="section-events__more-events-btn">
                 Все события
             </button>
@@ -811,6 +875,7 @@
                                 <label for="radio_bestsellers" class="radio__label">
                                     Бестселлеры
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_art" class="radio__input" type="checkbox" name="category"
@@ -820,6 +885,7 @@
                                 <label for="radio_art" class="radio__label">
                                     Искусство
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_architecture" class="radio__input" type="checkbox" name="category"
@@ -829,8 +895,9 @@
                                 <label for="radio_architecture" class="radio__label">
                                     Архитектура
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
-                            <li class="radio radios__radio">
+                            <li class="radio radios__radio radios__radio_default-checked">
                                 <input id="radio_design" class="radio__input" type="checkbox" name="category"
                                     value="Дизайн" checked>
                                 <span class="radio__custom-radio-btn">
@@ -838,6 +905,8 @@
                                 <label for="radio_design" class="radio__label">
                                     Дизайн
                                 </label>
+                                <span class="close-category-btn"> </span>
+                                
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_fashion" class="radio__input" type="checkbox" name="category"
@@ -847,6 +916,7 @@
                                 <label for="radio_fashion" class="radio__label">
                                     Мода
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_children" class="radio__input" type="checkbox" name="category"
@@ -856,6 +926,7 @@
                                 <label for="radio_children" class="radio__label">
                                     Детям
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_literature" class="radio__input" type="checkbox" name="category"
@@ -865,6 +936,7 @@
                                 <label for="radio_literature" class="radio__label">
                                     Художественная литература
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_journalism" class="radio__input" type="checkbox" name="category"
@@ -874,6 +946,7 @@
                                 <label for="radio_journalism" class="radio__label">
                                     Публицистика
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_guides" class="radio__input" type="checkbox" name="category"
@@ -883,6 +956,7 @@
                                 <label for="radio_guides" class="radio__label">
                                     Путеводители
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                             <li class="radio radios__radio">
                                 <input id="radio_phylosophy" class="radio__input" type="checkbox" name="category"
@@ -892,8 +966,9 @@
                                 <label for="radio_phylosophy" class="radio__label">
                                     Философия
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
-                            <li class="radio radios__radio">
+                            <li class="radio radios__radio radio_educational">
                                 <input id="radio_educational" class="radio__input" type="checkbox" name="category"
                                     value="Учебная литература">
                                 <span class="radio__custom-radio-btn">
@@ -901,8 +976,9 @@
                                 <label for="radio_educational" class="radio__label">
                                     Учебная литература
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
-                            <li class="radio radios__radio">
+                            <li class="radio radios__radio radio_yellow-press">
                                 <input id="radio_yellow-press" class="radio__input" type="checkbox" name="category"
                                     value="Журналы и газеты">
                                 <span class="radio__custom-radio-btn">
@@ -910,6 +986,7 @@
                                 <label for="radio_yellow-press" class="radio__label">
                                     Журналы и газеты
                                 </label>
+                                <span class="close-category-btn"> </span>
                             </li>
                         </ul>
                     </fieldset>
@@ -1125,6 +1202,7 @@
                             </div>
                         </li>
 
+                        
 
                     </ul>
                 </div>
@@ -1141,17 +1219,18 @@
             <p class="section-description section-projects__section-description">
                 Предварительные выводы: постоянное информационно-пропагандистское обеспечение нашей деятельности
                 однозначно фиксирует необходимость своевременного выполнения сверхзадачи. А ещё независимые государства
-                смешаны с не уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус
+                смешаны с не уникальными данными до степени совершенной неузнаваемости, из&#8209за чего возрастает их
+                статус
                 бесполезности. Прежде всего, постоянное
-                информационно&nbsp;пропагандистское <a class="tooltip tooltip_1" href="#">i</a>
+                информационно-пропагандистское <a class="tooltip tooltip_1" href="#">i</a>
                 обеспечение нашей деятельности однозначно фиксирует необходимость экономической целесообразности
-                принимаемых решений. И нет сомнений, что действия представителей оппозиции могут быть рассмотрены <a
-                    class="tooltip tooltip_2" href="#">i</a> исключительно в разрезе маркетинговых и
-                финансовых <a class="tooltip tooltip_3" href="#">i</a>
+                принимаемых решений. И&nbsp;нет сомнений, что действия представителей оппозиции могут быть рассмотрены
+                <a class="tooltip tooltip_2" href="#">i</a> исключительно в разрезе маркетинговых и<span class="br">
+                </span> финансовых <a class="tooltip tooltip_3" href="#">i</a>
                 предпосылок. Банальные, но неопровержимые выводы, а также представители современных социальных резервов
                 призывают нас к новым свершениям, которые, в свою очередь, должны быть смешаны с не уникальными данными
-                до степени совершенной неузнаваемости. Подробнее:<a class="section-projects__link link link_purple"
-                    href="#">blanchard-art.ru/projects/about.</a>
+                до степени совершенной неузнаваемости. Подробнее:<span class="br"> </span><a
+                    class="section-projects__link link link_purple" href="#">blanchard-art.ru/projects/about.</a>
             </p>
             <div class="partners">
                 <h3 class="partners__heading">
@@ -1240,73 +1319,75 @@
                 </h2>
             </a>
         </div>
-            <div class="contacts section-contacts__contacts">
-                <div class="container section-contacts__container">
-                    <div class="contacts__left-wrapper">
-                        <div class="contacts__left-inner">
-                            <a class="anchor anchor_order-subscription" id="order-subscription">
-                                <h3 class="contacts__heading">
-                                    Шоурум №4
-                                </h3>
-                            </a>
-                            <span class="contacts__adress">
-                                Леонтьевский переулок, дом 5/1
-                            </span>
-                            <form class="order-call-form contacts__order-call-form"
-                                action="https://jsonplaceholder.typicode.com/posts" method="POST">
-                                <fieldset class="order-call-form__fieldset">
-                                    <legend class="order-call-form__legend">
-                                        Заказать обратный звонок
-                                    </legend>
-                                    <div class="order-call-form__input-wrapper">
-                                        <input class="input order-call-form__input order-call-form__input_name"
-                                            type="text" placeholder="Имя*" name="name">
-                                    </div>
-                                    <div class="order-call-form__input-wrapper">
-                                        <input class="input order-call-form__input order-call-form__input_tel"
-                                            type="tel" placeholder="Телефон*" name="tel">
-                                    </div>
+        <div class="contacts section-contacts__contacts">
+            <div class="container section-contacts__container">
+                <div class="contacts__left-wrapper">
+                    <div class="contacts__left-inner">
+                        <a class="anchor anchor_order-subscription" id="order-subscription">
+                            <h3 class="contacts__heading">
+                                Шоурум №4
+                            </h3>
+                        </a>
+                        <span class="contacts__adress">
+                            Леонтьевский переулок, дом 5/1
+                        </span>
+                        <form class="order-call-form contacts__order-call-form"
+                            action="https://jsonplaceholder.typicode.com/posts" method="POST">
+                            <fieldset class="order-call-form__fieldset">
+                                <legend class="order-call-form__legend">
+                                    Заказать обратный звонок
+                                </legend>
+                                <div class="order-call-form__input-wrapper">
+                                    <input class="input order-call-form__input order-call-form__input_name" type="text"
+                                        placeholder="Имя*" name="name">
+                                </div>
+                                <div class="order-call-form__input-wrapper">
+                                    <input class="input order-call-form__input order-call-form__input_tel" type="tel"
+                                        placeholder="Телефон*" name="tel">
+                                </div>
 
-                                    <div class="order-call-form__submit-btn-wrapper">
-                                        <button class="btn order-call-form__btn" type="submit">Заказать</button>
-                                    </div>
+                                <div class="order-call-form__submit-btn-wrapper">
+                                    <button class="btn order-call-form__btn" type="submit">Заказать</button>
+                                </div>
 
 
-                                </fieldset>
-                            </form>
-                            <div class="contact-us contacts__contact-us">
-                                <h3 class="contact-us__heading">
-                                    Связаться в один клик
-                                </h3>
-                                <ul class="messenger contacts__messenger">
-                                    <li class="messenger__item">
-                                        <a aria-label="Написать в What's Up"
-                                            class="messenger__link messenger__link_whats-up" href="#">
+                            </fieldset>
+                        </form>
+                        <div class="contact-us contacts__contact-us">
+                            <h3 class="contact-us__heading">
+                                Связаться в один клик
+                            </h3>
+                            <ul class="messenger contacts__messenger">
+                                <li class="messenger__item">
+                                    <a aria-label="Написать в What's Up"
+                                        class="messenger__link messenger__link_whats-up" href="#">
 
-                                        </a>
-                                    </li>
-                                    <li class="messenger__item">
-                                        <a aria-label="Написать в Telegramm"
-                                            class="messenger__link messenger__link_telegramm" href="#">
+                                    </a>
+                                </li>
+                                <li class="messenger__item">
+                                    <a aria-label="Написать в Telegramm"
+                                        class="messenger__link messenger__link_telegramm" href="#">
 
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contacts__right-wrapper">
-                        <div class="contacts__map" id="map" style="position: absolute; top: 0px;  right: 0px; width:70%; height: 100%;">
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <div class="contacts__right-wrapper">
+                    <div class="contacts__map" id="map"
+                        style="position: absolute; top: 0px;  right: 0px; width:70%; height: 110%;">
+                    </div>
+                </div>
             </div>
+        </div>
     </section>
     <footer class="footer">
         <div class="container footer__container">
             <div class="logo">
                 <a class="link logo__link ui" href="#">
-                    <img class="logo__img" src="./img/logo_full.svg" alt="Логотип Blanchard">
+                    <img class="logo__img footer__logo" src="./img/logo_full.svg" alt="Логотип Blanchard">
+                    <img class="logo__img logo__img_mobile" src="./img/logo-mobile.svg" alt="Логотип Blanchard">
                 </a>
             </div>
             <ul class="social-media footer__social-media">
@@ -1349,7 +1430,7 @@
                 </li>
             </ul>
         </div>
-       
+
     </footer>
     <script> </script>
 </body>

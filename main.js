@@ -39,23 +39,32 @@ document.addEventListener('DOMContentLoaded', async function () {
                 onlyInViewport: false,
             },
             breakpoints: {
-                // when window width is >= 320px
-                // 320: {
-                //   slidesPerView: 2,
-                //   spaceBetween: 20
-                // },
-                // when window width is >= 480px
-                1000: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    slidesPerGroup: 1,
+                },
+                767: {
                     slidesPerView: 4,
                     spaceBetween: 34,
                     slidesPerGroup: 4,
+                },
+                1020: {
+                    slidesPerView: 4,
+                    spaceBetween: 34,
+                    slidesPerGroup: 4,
+                },
+                1460: {
+                    slidesPerView: 6,
+                    spaceBetween: 34,
+                    slidesPerGroup: 6,
                 },
                 1700: {
                     slidesPerView: 6,
                     spaceBetween: 50,
                     slidesPerGroup: 6,
                 },
-              }
+            }
         });
 
         // Publications Swiper setup 
@@ -81,7 +90,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                 containerMessage: 'Это первый слайд',
             },
             breakpoints: {
-                1000: {
+                750: {
+                    slidesPerView: 2,
+                    spaceBetween: 34,
+                    slidesPerGroup: 2,
+                },
+                1020: {
                     slidesPerView: 2,
                     spaceBetween: 49,
                     slidesPerGroup: 2,
@@ -93,6 +107,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                 },
             }
         });
+
+
 
         // Publications Swiper setup 
 
@@ -117,6 +133,16 @@ document.addEventListener('DOMContentLoaded', async function () {
                 containerMessage: 'Это первый слайд',
             },
             breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    // spaceBetween: 34,
+                    slidesPerGroup: 1,
+                },
+                767: {
+                    slidesPerView: 2,
+                    spaceBetween: 34,
+                    slidesPerGroup: 2,
+                },
                 1020: {
                     slidesPerView: 2,
                     spaceBetween: 50,
@@ -128,8 +154,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                     slidesPerGroup: 3,
                 },
 
-              }
+            }
         });
+
+
 
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -171,7 +199,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 let focusedByTabEl = el.closest('.choices');
                 focusedByTabEl.ariaLabel = el.textContent.trim(' ');
                 // el.getElementsByClassName('choices__list--single')[0].ariaLabel = el.textContent.trim(' ');
-                // console.log(el.textContent);
             }
             );
         }
@@ -201,20 +228,20 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
         }
 
-        
 
-            // ==============================
 
-            // SimpleBar setup
+        // ==============================
 
-            document.addEventListener('mousedown', function (e) {
-                if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
-                    if (simpleBar != null) {
-                        simpleBar.unMount();
-                    }
-                    simpleBar = null;
-                };
-            });
+        // SimpleBar setup
+
+        document.addEventListener('mousedown', function (e) {
+            if (e.target.classList.contains('choices__item') || !e.target.classList.contains('choices__item--single')) {
+                if (simpleBar != null) {
+                    simpleBar.unMount();
+                }
+                simpleBar = null;
+            };
+        });
 
         document.addEventListener('click', function (e) {
 
@@ -226,6 +253,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
             }
         });
+
 
         // ==============================
 
@@ -262,6 +290,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
             }
         }
+
 
         // WikiAPI features, that get data with picture, birth/death date and main description (1st paragraph) from Wiki
 
@@ -399,6 +428,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         });
 
+
         // ============================================
 
         // 1. Catalog section accordion setup
@@ -448,8 +478,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                 if (!this.classList.contains('ui-state-active')) {
                     for (let i = 0; i < accItemHeadings.length; i++) {
                         accItemHeadings[i].style.borderColor = '#CACACA';
+                        
                     }
                     this.style.borderColor = 'var(--btn-purple)';
+                }
+                else {
+                    accItemHeadings[i].style.borderColor = 'var(--btn-purple)';
+                    accItemHeadings[i + 1].style.borderColor = 'var(--btn-purple)';
                 }
             });
         }
@@ -464,7 +499,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             for (let i = 0; i < events.length; i++) {
                 events[i].classList.toggle('event--shown');
             };
-            
+
             if (events[0].classList.contains('event--shown')) {
                 events[3].classList.add('scrolled-to');
                 events[3].scrollIntoView({
@@ -608,6 +643,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         })
 
+
         // Adding class by focus to the submit btn in the contacts form
         let submitBtn = document.getElementsByClassName('order-call-form__btn')[0];
 
@@ -672,16 +708,202 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Burger menu show/hide functionality 
 
-        document.getElementsByClassName('burger-menu')[0].addEventListener('click', function(){
-            let navigation = document.getElementsByClassName('nav')[0];
-            let headerBottom = document.getElementsByClassName('header__inner-bottom')[0]
-            navigation.classList.toggle('nav--opened');
-            headerBottom.classList.toggle('header__inner-bottom--opened')
+        document.getElementsByClassName('burger-menu')[0].addEventListener('click', function () {
+            this.classList.add('burger--hidden');
+            let mobileNav = document.getElementsByClassName('nav_mobile')[0];
+            mobileNav.classList.add('nav_mobile--open');
         });
+
+        document.getElementsByClassName('burger-menu_nav')[0].addEventListener('click', function () {
+            let burgerMenu = document.getElementsByClassName('burger-menu')[0];
+            burgerMenu.classList.remove('burger--hidden');
+            let mobileNav = document.getElementsByClassName('nav_mobile')[0];
+            mobileNav.classList.remove('nav_mobile--open');
+        });
+
+        // Search input show/hide
+
+        document.body.addEventListener('click', function (e) {
+            let searchBtn = document.getElementsByClassName('btn_search-mobile')[0];
+            let searchInput = document.getElementsByClassName('search__input_mobile')[0];
+            if (e.target === searchBtn) {
+                if (searchInput.value.length === 0 || !searchInput.classList.contains('search__input_mobile--open')) {
+                    e.preventDefault();
+                    searchInput.placeholder = "";
+                    searchInput.classList.toggle('search__input_mobile--open');
+                }
+            }
+            else if (e.target != searchBtn && e.target != searchInput) {
+                searchInput.classList.remove('search__input_mobile--open');
+            }
+        });
+
+        // Map customisation
+        function resizeMapToMobile () {
+            let map = document.getElementById('map');
+
+            map.style.left = '0'
+            map.style.width = '100%'
+            map.style.rigth = '50px'
+            map.style.height = '360px'
+            map.style.top = '0'
+            map.style.zIndex = '99999999'
+            // map.style.marginRight = '50px'
+        }
+
+        // position: absolute; top: 0px;  right: 0px; width:70%; height: 110%;
+
+        function resizeMapToDesktop () {
+            let map = document.getElementById('map');
+
+            map.style.left = 'auto'
+            map.style.width = '70%'
+            map.style.rigth = '0px'
+            map.style.height = '110%'
+            map.style.top = '0'
+            map.style.zIndex = '1'
+            // map.style.marginRight = '50px' 
+        }
 
         document.body.style.overflow = 'visible';
 
+        let swiperContainer = document.getElementById('wrapperForSwiper');
+        let swiperWrapper = document.getElementsByClassName('events')[0];
+        let swiperSlide = document.getElementsByClassName('event');
+
+        if (document.body.clientWidth < 767 && !swiperContainer.classList.contains('swiper')) {
+            swiperContainer.classList.add('swiper');
+            swiperWrapper.classList.add('swiper-wrapper');
+            swiperSlide.forEach(slide => slide.classList.add('swiper-slide'));
+
+            const eventSlider = new Swiper(swiperContainer, {
+                direction: 'horizontal',
+                loop: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    type: 'bullets',
+                    clickable: true,
+                },
+                slidesPerView: 1,
+            });
+
+            publicationsSwiper.disable();
+
+            resizeMapToMobile(); 
+
+           
+
+        }
+        else {
+            publicationsSwiper.enable();
+            publicationsSwiper.update();
+            resizeMapToDesktop ()
+        }
+
+
+
+        window.addEventListener('resize', function () {
+
+
+            if (document.body.clientWidth < 767 && !swiperContainer.classList.contains('swiper')) {
+                swiperContainer.classList.add('swiper');
+                swiperWrapper.classList.add('swiper-wrapper');
+                swiperSlide.forEach(slide => slide.classList.add('swiper-slide'));
+
+                const eventSlider = new Swiper(swiperContainer, {
+                    direction: 'horizontal',
+                    loop: false,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'bullets',
+                        clickable: true,
+                    },
+                    slidesPerView: 1,
+                });
+
+                publicationsSwiper.disable();
+
+                resizeMapToMobile();
+
+            }
+            else if (document.body.clientWidth > 767) {
+                swiperContainer.classList.remove('swiper');
+                swiperWrapper.classList.remove('swiper-wrapper');
+                swiperSlide.forEach(slide => slide.classList.remove('swiper-slide'));
+
+                publicationsSwiper.enable();
+                publicationsSwiper.update();
+
+                resizeMapToDesktop()
+            }
+        })
+   
+
+    // Event swiper init on "width < 768px" devices
+
+    let checkboxes = document.getElementsByClassName('radio__input');
+    let categoriesWrapper = document.getElementsByClassName('categories__form')[0];
+    let select = categoriesWrapper.getElementsByClassName('form__legend')[0];
+
+    let isAnyCheckBoxChecked;
+    let checkedElement;
+
+    function showAllCategories() {
+        checkboxes.forEach(el => {
+            let category = el.closest('.radios__radio');
+            category.classList.add('radios__radio--shown');
+            el.closest('li').getElementsByClassName('close-category-btn')[0].classList.add('close-category-btn--hidden')
+        });
+    }
+
+    function hideNotCheckedCategories() {
+        checkboxes.forEach(el => {
+            let category = el.closest('.radios__radio');
+            category.classList.remove('radios__radio_default-checked')
+            if (el.checked) {
+                category.classList.add('radios__radio--shown');
+                el.closest('li').getElementsByClassName('close-category-btn')[0].classList.remove('close-category-btn--hidden')
+            }
+            else {
+                category.classList.remove('radios__radio--shown');
+            }
+        });
+    }
+
+    function uncheckAllCategories() {
+        checkboxes.forEach(el => {
+            el.checked = false;
+        });
+    }
+
+
+
+    // form__legend--active
+
+    categoriesWrapper.addEventListener('click', function (e) {
+        if (e.target == select) {
+            if (select.classList.contains('form__legend--active')) {
+                select.classList.remove('form__legend--active');
+                hideNotCheckedCategories();
+            }
+            else {
+                select.classList.add('form__legend--active');
+                showAllCategories();
+            }
+        }
+        if (e.target.classList.contains('close-category-btn')) {
+            uncheckAllCategories();
+            showAllCategories();
+            select.classList.add('form__legend--active');
+        }
+        else if (e.target.classList.contains('radio__input')) {
+            uncheckAllCategories();
+            e.target.checked = true;
+            hideNotCheckedCategories();
+            select.classList.remove('form__legend--active');
+        }
+
     })
 
-
+    })
 });
